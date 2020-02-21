@@ -1,0 +1,253 @@
+I-Logix-RPY-Archive version 8.15.0 * 9841247
+
+- m_fileModifyTime = { IRPYRawContainer 
+	- size = 109;
+	- value = "../../Server/S_HTTP_Connection.cpp" 6.14.2019::7:1:15
+	"../../Server/S_HTTP_Connection.h" 6.14.2019::7:1:15
+	"../../Server/S_HTTP_ConnectionManager.cpp" 6.14.2019::7:1:17
+	"../../Server/S_HTTP_ConnectionManager.h" 6.14.2019::7:1:17
+	"../../Server/S_HTTP_MainSession.cpp" 6.14.2019::7:4:10
+	"../../Server/S_HTTP_MainSession.h" 6.14.2019::7:4:10
+	"../../Server/S_HTTP_Service.cpp" 6.14.2019::7:12:49
+	"../../Server/S_HTTP_Service.h" 6.14.2019::7:12:49
+	"../../Server/S_HTTP_Session.cpp" 6.14.2019::7:12:4
+	"../../Server/S_HTTP_Session.h" 6.14.2019::7:12:4
+	"../../Server/Server.cpp" 6.14.2019::7:12:50
+	"../../Server/Server.h" 6.14.2019::7:12:49
+	"../../src/HttpClient/S_HttpClient_Connect.cpp" 9.27.2019::1:24:8
+	"../../src/HttpClient/S_HttpClient_Connect.h" 9.27.2019::1:22:18
+	"../../src/HttpClient/S_HttpClient_Service.cpp" 9.27.2019::1:23:23
+	"../../src/HttpClient/S_HttpClient_Service.h" 9.27.2019::1:23:4
+	"../../src/HttpClientTest/S_HttpClient_MainSession.cpp" 9.27.2019::1:41:2
+	"../../src/HttpClientTest/S_HttpClient_MainSession.h" 9.27.2019::1:32:31
+	"../../src/HttpClientTest/S_HttpClient_Session.cpp" 9.24.2019::7:21:4
+	"../../src/HttpClientTest/S_HttpClient_Session.h" 9.24.2019::7:21:4
+	"../../src/HttpMsg/S_HTTP_Msg.cpp" 9.20.2019::6:6:58
+	"../../src/HttpMsg/S_HTTP_Msg.h" 9.20.2019::6:6:58
+	"../../src/HttpMsg/S_HttpReq_Msg.cpp" 12.10.2019::5:40:24
+	"../../src/HttpMsg/S_HttpReq_Msg.h" 12.10.2019::5:40:24
+	"../../src/HttpMsg/S_HttpRes_Msg.cpp" 12.10.2019::5:40:24
+	"../../src/HttpMsg/S_HttpRes_Msg.h" 12.10.2019::5:40:24
+	"../../src/HttpMsg/S_Http_Msg.cpp" 12.10.2019::5:48:0
+	"../../src/HttpMsg/S_Http_Msg.h" 12.10.2019::5:48:0
+	"../../src/HttpServer/S_HTTP_Connection.cpp" 9.20.2019::6:21:9
+	"../../src/HttpServer/S_HTTP_Connection.h" 9.20.2019::6:21:9
+	"../../src/HttpServer/S_HTTP_ConnectionManager.cpp" 9.20.2019::6:21:9
+	"../../src/HttpServer/S_HTTP_ConnectionManager.h" 9.20.2019::6:21:9
+	"../../src/HttpServer/S_HTTP_Service.cpp" 9.20.2019::6:21:9
+	"../../src/HttpServer/S_HTTP_Service.h" 9.20.2019::6:21:9
+	"../../src/HttpServer/S_HttpServer_Connection.cpp" 9.25.2019::2:13:48
+	"../../src/HttpServer/S_HttpServer_Connection.h" 12.10.2019::5:34:43
+	"../../src/HttpServer/S_HttpServer_ConnectionManager.cpp" 9.20.2019::6:51:43
+	"../../src/HttpServer/S_HttpServer_ConnectionManager.h" 9.20.2019::7:8:54
+	"../../src/HttpServer/S_HttpServer_Service.cpp" 9.20.2019::7:12:26
+	"../../src/HttpServer/S_HttpServer_Service.h" 9.20.2019::7:10:48
+	"../../src/HttpServer/test/HttpServerTest.cpp" 9.24.2019::6:3:59
+	"../../src/HttpServer/test/HttpServerTest.h" 9.24.2019::6:3:59
+	"../../src/HttpServer/test/HttpServerTest/S_HttpServer_Session.cpp" 1.17.2020::8:18:27
+	"../../src/HttpServer/test/HttpServerTest/S_HttpServer_Session.h" 1.17.2020::8:18:27
+	"../../src/HttpServer/test/S_HttpServer_Session.cpp" 1.17.2020::8:28:17
+	"../../src/HttpServer/test/S_HttpServer_Session.h" 1.17.2020::8:28:17
+	"../../src/HttpServerService/S_HTTP_Connection.cpp" 9.20.2019::6:5:33
+	"../../src/HttpServerService/S_HTTP_Connection.h" 9.20.2019::6:5:33
+	"../../src/HttpServerService/S_HTTP_ConnectionManager.cpp" 9.20.2019::6:5:33
+	"../../src/HttpServerService/S_HTTP_ConnectionManager.h" 9.20.2019::6:5:32
+	"../../src/HttpServerService/S_HTTP_Msg.cpp" 9.20.2019::6:5:33
+	"../../src/HttpServerService/S_HTTP_Msg.h" 9.20.2019::6:5:33
+	"../../src/HttpServerService/S_HTTP_Service.cpp" 9.20.2019::6:5:33
+	"../../src/HttpServerService/S_HTTP_Service.h" 9.20.2019::6:5:33
+	"../../src/HttpServerServiceTest/HttpServerServiceTest.cpp" 9.20.2019::6:5:28
+	"../../src/HttpServerServiceTest/HttpServerServiceTest.h" 9.20.2019::6:5:28
+	"../../src/HttpServerServiceTest/S_HTTP_MainSession.cpp" 9.20.2019::6:5:28
+	"../../src/HttpServerServiceTest/S_HTTP_MainSession.h" 9.20.2019::6:5:28
+	"../../src/HttpServerServiceTest/S_HTTP_Session.cpp" 9.20.2019::6:5:28
+	"../../src/HttpServerServiceTest/S_HTTP_Session.h" 9.20.2019::6:5:28
+	"../../src/HttpServerTest/HttpServerTest.cpp" 9.24.2019::6:3:59
+	"../../src/HttpServerTest/HttpServerTest.h" 9.24.2019::6:3:59
+	"../../src/HttpServerTest/S_HTTP_MainSession.cpp" 9.20.2019::6:21:9
+	"../../src/HttpServerTest/S_HTTP_MainSession.h" 9.20.2019::6:21:9
+	"../../src/HttpServerTest/S_HTTP_Session.cpp" 9.20.2019::6:21:9
+	"../../src/HttpServerTest/S_HTTP_Session.h" 9.20.2019::6:21:9
+	"../../src/HttpServerTest/S_HttpServer_MainSession.cpp" 9.24.2019::7:42:0
+	"../../src/HttpServerTest/S_HttpServer_MainSession.h" 9.24.2019::6:3:59
+	"../../src/HttpServerTest/S_HttpServer_Session.cpp" 9.24.2019::6:3:59
+	"../../src/HttpServerTest/S_HttpServer_Session.h" 9.24.2019::6:3:59
+	"../../src/HttpService/HttpService.cpp" 6.19.2019::0:52:48
+	"../../src/HttpService/HttpService.h" 6.19.2019::0:52:48
+	"../../src/HttpService/S_HTTP_Connection.cpp" 8.29.2019::9:26:21
+	"../../src/HttpService/S_HTTP_Connection.h" 7.12.2019::5:22:19
+	"../../src/HttpService/S_HTTP_ConnectionManager.cpp" 7.5.2019::1:32:2
+	"../../src/HttpService/S_HTTP_ConnectionManager.h" 7.4.2019::7:53:51
+	"../../src/HttpService/S_HTTP_Msg.cpp" 6.19.2019::0:52:48
+	"../../src/HttpService/S_HTTP_Msg.h" 6.19.2019::2:57:3
+	"../../src/HttpService/S_HTTP_Service.cpp" 7.29.2019::9:52:14
+	"../../src/HttpService/S_HTTP_Service.h" 7.4.2019::7:59:21
+	"../../src/Server/S_HTTP_Connection.cpp" 6.18.2019::8:20:37
+	"../../src/Server/S_HTTP_Connection.h" 6.18.2019::8:17:35
+	"../../src/Server/S_HTTP_ConnectionManager.cpp" 6.18.2019::7:49:8
+	"../../src/Server/S_HTTP_ConnectionManager.h" 6.18.2019::7:49:8
+	"../../src/Server/S_HTTP_MainSession.cpp" 6.18.2019::6:41:56
+	"../../src/Server/S_HTTP_MainSession.h" 6.18.2019::7:21:16
+	"../../src/Server/S_HTTP_Msg.cpp" 6.18.2019::7:49:8
+	"../../src/Server/S_HTTP_Msg.h" 6.18.2019::7:49:8
+	"../../src/Server/S_HTTP_Service.cpp" 6.18.2019::8:23:21
+	"../../src/Server/S_HTTP_Service.h" 6.18.2019::8:23:21
+	"../../src/Server/S_HTTP_Session.cpp" 6.18.2019::6:12:16
+	"../../src/Server/S_HTTP_Session.h" 6.18.2019::6:12:16
+	"../../src/Server/Server.cpp" 6.18.2019::7:49:8
+	"../../src/Server/Server.h" 6.18.2019::7:49:8
+	"../../src/ServerTest/S_HTTP_MainSession.cpp" 6.18.2019::7:49:8
+	"../../src/ServerTest/S_HTTP_MainSession.h" 6.18.2019::7:49:8
+	"../../src/ServerTest/S_HTTP_Session.cpp" 6.18.2019::7:49:8
+	"../../src/ServerTest/S_HTTP_Session.h" 6.18.2019::7:49:8
+	"../../src/ServiceTest/S_HTTP_MainSession.cpp" 6.20.2019::9:22:53
+	"../../src/ServiceTest/S_HTTP_MainSession.h" 6.20.2019::7:2:57
+	"../../src/ServiceTest/S_HTTP_Session.cpp" 6.20.2019::7:2:57
+	"../../src/ServiceTest/S_HTTP_Session.h" 6.20.2019::7:2:57
+	"../../src/ServiceTest/ServiceTest.cpp" 6.20.2019::7:2:57
+	"../../src/ServiceTest/ServiceTest.h" 6.20.2019::7:2:57
+	"../../src/package_1/class_0.cpp" 6.17.2019::1:38:21
+	"../../src/package_1/class_0.h" 6.17.2019::1:38:21
+	"D:/work/projects/s_http/src/HttpClient/S_HttpClient_Service.cpp" 9.20.2019::8:21:41
+	"D:/work/projects/s_http/src/HttpService/S_HTTP_Connection.cpp" 7.11.2019::8:37:34
+	"D:/work/projects/s_http/src/HttpService/S_HTTP_Connection.h" 7.11.2019::8:33:35
+	
+}
+- m_saveUnitAndOwnerSaveUnit = { IRPYRawContainer 
+	- size = 6;
+	- value = "GUID 25985723-21bc-46a0-90e9-53d6a59ef5d5" "GUID e4197c33-4523-4bba-9bd8-cbc2e79c0320"
+	"GUID 5e38abe5-8a58-4e5b-9cb7-226b3d51450b" "GUID e4197c33-4523-4bba-9bd8-cbc2e79c0320"
+	"GUID 64ce9c97-db1a-4dc2-81a2-616d14a490c3" "GUID e4197c33-4523-4bba-9bd8-cbc2e79c0320"
+	"GUID e6ebecd6-79d5-4211-846f-191c90fbd958" "GUID e4197c33-4523-4bba-9bd8-cbc2e79c0320"
+	"GUID fbcfb3af-625f-434d-9fc7-3d09492f5ad1" "GUID e4197c33-4523-4bba-9bd8-cbc2e79c0320"
+	"GUID fbdba27b-8b67-4019-bca2-82ed502fdf54" "GUID e4197c33-4523-4bba-9bd8-cbc2e79c0320"
+	
+}
+- size = 16;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpServerTest.sbsx";
+	- _subsystem = "HttpServerTest";
+	- _name = "S_HttpServer_Session";
+	- _id = GUID 2f7bbba2-7b0f-40a2-a776-dd2a35d904c4;
+}
+- genTime = 1.17.2020::8:28:17;
+- hElement = { IHandle 
+	- _m2Class = "ISubsystem";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpServer.sbsx";
+	- _name = "HttpServer";
+	- _id = GUID fbdba27b-8b67-4019-bca2-82ed502fdf54;
+}
+- genTime = 6.19.2019::2:15:4;
+- hElement = { IHandle 
+	- _m2Class = "ICodeGenConfigInfo";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\DefaultComponent.cmpx";
+	- _name = "DefaultComponent\\S_HTTP_Config";
+	- _id = GUID c73ed3b0-480a-4656-a70d-ee44d3e60f67;
+}
+- genTime = 6.14.2019::7:18:4;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpClient.sbsx";
+	- _subsystem = "HttpClient";
+	- _name = "S_HttpClient_Connect";
+	- _id = GUID 8fbb757f-40b9-498a-847d-dadd5d31d1af;
+}
+- genTime = 9.27.2019::1:32:54;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpMsg.sbsx";
+	- _subsystem = "HttpMsg";
+	- _name = "S_HttpReq_Msg";
+	- _id = GUID 00836d3c-d1b9-416b-a0c1-4f78fc447bb1;
+}
+- genTime = 12.10.2019::5:41:47;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpServer.sbsx";
+	- _subsystem = "HttpServer";
+	- _name = "S_HttpServer_Connection";
+	- _id = GUID eba52f2c-dd0e-4f38-aa75-9f33ecf97e6b;
+}
+- genTime = 12.10.2019::5:34:43;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpClient.sbsx";
+	- _subsystem = "HttpClient";
+	- _name = "S_HttpClient_Service";
+	- _id = GUID c49e4947-1797-4696-bb57-0bc9b494731f;
+}
+- genTime = 9.27.2019::1:32:54;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpMsg.sbsx";
+	- _subsystem = "HttpMsg";
+	- _name = "S_Http_Msg";
+	- _id = GUID 535ed458-05d5-4769-9700-d887eb2bd0b2;
+}
+- genTime = 12.10.2019::5:48:0;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpClientTest.sbsx";
+	- _subsystem = "HttpClientTest";
+	- _name = "S_HttpClient_MainSession";
+	- _id = GUID 72876b64-5386-4882-8c82-897eddb2fcf5;
+}
+- genTime = 12.10.2019::5:34:43;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpClientTest.sbsx";
+	- _subsystem = "HttpClientTest";
+	- _name = "S_HttpClient_Session";
+	- _id = GUID 88b7e5b0-d624-4538-974e-b910567c241a;
+}
+- genTime = 9.24.2019::7:21:4;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpServerTest.sbsx";
+	- _subsystem = "HttpServerTest";
+	- _name = "S_HttpServer_MainSession";
+	- _id = GUID 8f1deb38-45f9-4aa8-9f6a-1cf750385362;
+}
+- genTime = 9.24.2019::7:42:0;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpMsg.sbsx";
+	- _subsystem = "HttpMsg";
+	- _name = "S_HttpRes_Msg";
+	- _id = GUID 1957b5ca-0dd7-496b-9063-58abc41b8ffc;
+}
+- genTime = 12.10.2019::5:41:47;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpMsg.sbsx";
+	- _subsystem = "HttpMsg";
+	- _class = "S_Http_Msg";
+	- _name = "HEADER";
+	- _id = GUID a8619f4c-b0f2-4d3f-bc4f-f398c4291906;
+}
+- genTime = 12.10.2019::5:48:0;
+- hElement = { IHandle 
+	- _m2Class = "ISubsystem";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpServerTest.sbsx";
+	- _name = "HttpServerTest";
+	- _id = GUID e6ebecd6-79d5-4211-846f-191c90fbd958;
+}
+- genTime = 9.24.2019::7:42:0;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpServer.sbsx";
+	- _subsystem = "HttpServer";
+	- _name = "S_HttpServer_ConnectionManager";
+	- _id = GUID 024f7d8a-a094-4b19-8969-3dbf17d0cd29;
+}
+- genTime = 9.20.2019::7:8:54;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = ".\\..\\..\\..\\design\\s_http\\s_http_rpy\\HttpServer.sbsx";
+	- _subsystem = "HttpServer";
+	- _name = "S_HttpServer_Service";
+	- _id = GUID 5fc25467-36a1-41fd-b65d-32a59f1831c4;
+}
+- genTime = 9.20.2019::7:13:30;
+

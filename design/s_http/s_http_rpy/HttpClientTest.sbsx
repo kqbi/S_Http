@@ -1,0 +1,986 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RhapsodyArchive>
+	<MagicNumber></MagicNumber>
+	<CODE-PAGE>936</CODE-PAGE>
+	<version>100.840.0</version>
+	<lang>C++</lang>
+	<BuildNo>9841247</BuildNo>
+	
+	<RHAPSODY-MODEL>
+	<ISubsystem type="e">
+			<_id type="a">GUID 5e38abe5-8a58-4e5b-9cb7-226b3d51450b</_id>
+			<_myState type="a">8192</_myState>
+			<_properties type="p"><IPropertyContainer type="e">
+				<Subjects type="c">
+					<IRPYRawContainer type="e">
+						<size type="a">1</size>
+						<IPropertySubject type="e">
+							<_Name type="a">CG</_Name>
+							<Metaclasses type="c">
+								<IRPYRawContainer type="e">
+									<size type="a">1</size>
+									<IPropertyMetaclass type="e">
+										<_Name type="a">Package</_Name>
+										<Properties type="c">
+											<IRPYRawContainer type="e">
+												<size type="a">1</size>
+												<IProperty type="e">
+													<_Name type="a">UseAsExternal</_Name>
+													<_Value type="a">True</_Value>
+													<_Type type="a">Bool</_Type>
+												</IProperty>
+												
+											</IRPYRawContainer>
+										</Properties>
+									</IPropertyMetaclass>
+									
+								</IRPYRawContainer>
+							</Metaclasses>
+						</IPropertySubject>
+						
+					</IRPYRawContainer>
+				</Subjects>
+			</IPropertyContainer>
+			</_properties>
+			<_name type="a">HttpClientTest</_name>
+			<_modifiedTimeWeak type="a">1.17.2020::7:48:35</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.17.2020::7:48:35</_modifiedTime>
+			<_lastID type="a">2</_lastID>
+			<weakCGTime type="a">1.17.2020::7:48:35</weakCGTime>
+			<strongCGTime type="a">1.17.2020::7:48:35</strongCGTime>
+			<_defaultComposite type="s">GUID 09ab21b5-20ac-45b4-8065-a49947c1ff67</_defaultComposite>
+			<_eventsBaseID type="a">-1</_eventsBaseID>
+			<_configurationRelatedTime type="a">1.2.1990::0:0:0</_configurationRelatedTime>
+			<AggregatesList type="e">
+				<value>GUID 09ab21b5-20ac-45b4-8065-a49947c1ff67</value>
+				<value>GUID 72876b64-5386-4882-8c82-897eddb2fcf5</value>
+				<value>GUID 88b7e5b0-d624-4538-974e-b910567c241a</value>
+			</AggregatesList>
+		</ISubsystem>
+		<IClass type="e">
+			<_id type="a">GUID 09ab21b5-20ac-45b4-8065-a49947c1ff67</_id>
+			<_myState type="a">40960</_myState>
+			<_name type="a">TopLevel</_name>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.2.1990::0:0:0</_modifiedTime>
+			<weakCGTime type="a">1.2.1990::0:0:0</weakCGTime>
+			<strongCGTime type="a">1.2.1990::0:0:0</strongCGTime>
+			<_itsStateChart type="r">
+				<IHandle type="e">
+				</IHandle>
+			</_itsStateChart>
+			<_classModifier type="a">Unspecified</_classModifier>
+		</IClass>
+		<IClass type="e">
+			<_id type="a">GUID 72876b64-5386-4882-8c82-897eddb2fcf5</_id>
+			<_myState type="a">8192</_myState>
+			<_properties type="p"><IPropertyContainer type="e">
+				<Subjects type="c">
+					<IRPYRawContainer type="e">
+						<size type="a">2</size>
+						<IPropertySubject type="e">
+							<_Name type="a">CG</_Name>
+							<Metaclasses type="c">
+								<IRPYRawContainer type="e">
+									<size type="a">1</size>
+									<IPropertyMetaclass type="e">
+										<_Name type="a">Class</_Name>
+										<Properties type="c">
+											<IRPYRawContainer type="e">
+												<size type="a">1</size>
+												<IProperty type="e">
+													<_Name type="a">UseAsExternal</_Name>
+													<_Value type="a">True</_Value>
+													<_Type type="a">Bool</_Type>
+												</IProperty>
+												
+											</IRPYRawContainer>
+										</Properties>
+									</IPropertyMetaclass>
+									
+								</IRPYRawContainer>
+							</Metaclasses>
+						</IPropertySubject>
+						
+						<IPropertySubject type="e">
+							<_Name type="a">CPP_CG</_Name>
+							<Metaclasses type="c">
+								<IRPYRawContainer type="e">
+									<size type="a">1</size>
+									<IPropertyMetaclass type="e">
+										<_Name type="a">Class</_Name>
+										<Properties type="c">
+											<IRPYRawContainer type="e">
+												<size type="a">3</size>
+												<IProperty type="e">
+													<_Name type="a">ImpIncludes</_Name>
+													<_Value type="a">&lt;iostream&gt;,S_HttpRes_Msg.h</_Value>
+													<_Type type="a">String</_Type>
+												</IProperty>
+												
+												<IProperty type="e">
+													<_Name type="a">ImplementationProlog</_Name>
+													<_Type type="a">MultiLine</_Type>
+												</IProperty>
+												
+												<IProperty type="e">
+													<_Name type="a">SpecIncludes</_Name>
+													<_Value type="a">S_HttpClient_ServiceSDK.h,boostInclude.h</_Value>
+													<_Type type="a">String</_Type>
+												</IProperty>
+												
+											</IRPYRawContainer>
+										</Properties>
+									</IPropertyMetaclass>
+									
+								</IRPYRawContainer>
+							</Metaclasses>
+						</IPropertySubject>
+						
+					</IRPYRawContainer>
+				</Subjects>
+			</IPropertyContainer>
+			</_properties>
+			<_name type="a">S_HttpClient_MainSession</_name>
+			<_modifiedTimeWeak type="a">1.17.2020::7:47:16</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.17.2020::7:47:16</_modifiedTime>
+			<_lastID type="a">4</_lastID>
+			<weakCGTime type="a">1.17.2020::7:47:16</weakCGTime>
+			<strongCGTime type="a">1.17.2020::7:47:16</strongCGTime>
+			<_itsStateChart type="r">
+				<IHandle type="e">
+				</IHandle>
+			</_itsStateChart>
+			<_classModifier type="a">Unspecified</_classModifier>
+			<AggregatesList type="e">
+				<value>GUID 9c60d042-b729-4b7a-a5c6-95b777569417</value>
+				<value>GUID 83ac419d-6a0e-47d5-8e58-dedbf339a4ec</value>
+				<value>GUID 1846bb3f-56b4-4283-abfc-795ac1f41da1</value>
+				<value>GUID 6df4b0e4-8420-4ded-9aa0-3791ca9de645</value>
+				<value>GUID 53b078ed-75fd-4555-a9bc-3c872612ca3d</value>
+				<value>GUID 0d8529f3-35af-4be9-8cbb-be30867faeed</value>
+			</AggregatesList>
+		</IClass>
+		<IConstructor type="e">
+			<_id type="a">GUID 9c60d042-b729-4b7a-a5c6-95b777569417</_id>
+			<_myState type="a">73728</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">12.10.2019::5:34:43</_modifiedTime>
+			<_virtual type="a">0</_virtual>
+			<Args type="c">
+				<IRPYRawContainer type="e">
+					<size type="a">0</size>
+				</IRPYRawContainer>
+			</Args>
+			<_returnType type="r">
+				<IHandle type="e">
+				</IHandle>
+			</_returnType>
+			<_abstract type="a">0</_abstract>
+			<_final type="a">0</_final>
+			<_concurrency type="a">Sequential</_concurrency>
+			<_protection type="a">iPublic</_protection>
+			<_static type="a">0</_static>
+			<_constant type="a">0</_constant>
+		</IConstructor>
+		<IDestructor type="e">
+			<_id type="a">GUID 83ac419d-6a0e-47d5-8e58-dedbf339a4ec</_id>
+			<_myState type="a">8192</_myState>
+			<_modifiedTimeWeak type="a">9.24.2019::8:50:42</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::8:50:42</_modifiedTime>
+			<_virtual type="a">0</_virtual>
+			<Args type="c">
+				<IRPYRawContainer type="e">
+					<size type="a">0</size>
+				</IRPYRawContainer>
+			</Args>
+			<_returnType type="r">
+				<IHandle type="e">
+				</IHandle>
+			</_returnType>
+			<_abstract type="a">0</_abstract>
+			<_final type="a">0</_final>
+			<_concurrency type="a">Sequential</_concurrency>
+			<_protection type="a">iPublic</_protection>
+			<_static type="a">0</_static>
+			<_constant type="a">0</_constant>
+			<_itsBody type="p"><IBody type="e">
+				<_bodyData type="a">S_HttpClient_StopMoudle();</_bodyData>
+			</IBody>
+			</_itsBody>
+		</IDestructor>
+		<IPrimitiveOperation type="e">
+			<_id type="a">GUID 1846bb3f-56b4-4283-abfc-795ac1f41da1</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">sendReqMsg</_name>
+			<_modifiedTimeWeak type="a">12.10.2019::5:34:37</_modifiedTimeWeak>
+			<_modifiedTime type="a">12.10.2019::5:34:37</_modifiedTime>
+			<_lastID type="a">11</_lastID>
+			<_virtual type="a">0</_virtual>
+			<_returnType type="r">
+				<IHandle type="e">
+					<_hm2Class type="a">IType</_hm2Class>
+					<_hsubsystem type="a">PredefinedTypesCpp</_hsubsystem>
+					<_hname type="a">void</_hname>
+					<_hid type="a">GUID c6b70728-b655-45a0-abb7-8ea5d3da94be</_hid>
+				</IHandle>
+			</_returnType>
+			<_abstract type="a">0</_abstract>
+			<_final type="a">0</_final>
+			<_concurrency type="a">Sequential</_concurrency>
+			<_protection type="a">iPublic</_protection>
+			<_static type="a">0</_static>
+			<_constant type="a">0</_constant>
+			<_itsBody type="p"><IBody type="e">
+				<_bodyData type="a">S_HttpClient_SendReqMsg(pUser, readFromServer, method, target, host, port, contentType, body, version, keepAlive, basicAuth);</_bodyData>
+			</IBody>
+			</_itsBody>
+			<AggregatesList type="e">
+				<value>GUID b98b4d6e-2fad-47f3-bdd3-4880568f8e7e</value>
+				<value>GUID f0dd81c3-7361-41a0-ba81-afc290b90372</value>
+				<value>GUID 9a1857b7-05e9-405f-9770-25abf69a066f</value>
+				<value>GUID c877568e-0493-47bb-83dc-0a6e490fbe4b</value>
+				<value>GUID c2a5532e-97dd-407c-84c9-7885e7b25ec1</value>
+				<value>GUID 22a6fbcf-b65b-4b59-a5ac-45fe22b21cf4</value>
+				<value>GUID e5d0c23b-f822-4cfd-8a1f-7f83628ea5d9</value>
+				<value>GUID 23dc031d-596e-4e72-b8df-d7c3bf8e8967</value>
+				<value>GUID 50954d6c-e6da-4884-89de-bab699610ec1</value>
+				<value>GUID 90406c5f-e114-4c58-8826-a0017aafcab9</value>
+				<value>GUID 7bfc6a11-8001-40fe-8be3-800f77c12b25</value>
+			</AggregatesList>
+		</IPrimitiveOperation>
+		<IArgument type="e">
+			<_id type="a">GUID b98b4d6e-2fad-47f3-bdd3-4880568f8e7e</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">pUser</_name>
+			<_modifiedTimeWeak type="a">9.27.2019::1:31:35</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.27.2019::1:31:35</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID 1692f9da-2c74-410b-9708-397ca5118e36</value>
+			</AggregatesList>
+		</IArgument>
+		<IType type="e">
+			<_id type="a">GUID 1692f9da-2c74-410b-9708-397ca5118e36</_id>
+			<_myState type="a">8192</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.2.1990::0:0:0</_modifiedTime>
+			<_declaration type="a">void*</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID f0dd81c3-7361-41a0-ba81-afc290b90372</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">readFromServer</_name>
+			<_modifiedTimeWeak type="a">9.27.2019::1:32:10</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.27.2019::1:32:10</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID e7836eb5-597e-4af9-9fe9-13f674e948e7</value>
+			</AggregatesList>
+		</IArgument>
+		<IType type="e">
+			<_id type="a">GUID e7836eb5-597e-4af9-9fe9-13f674e948e7</_id>
+			<_myState type="a">8192</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.2.1990::0:0:0</_modifiedTime>
+			<_declaration type="a">READFROMSERVER</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID 9a1857b7-05e9-405f-9770-25abf69a066f</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_name type="a">method</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:13:23</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:13:23</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID 4487b0d0-6696-45d6-8c92-044f88a3febd</value>
+			</AggregatesList>
+		</IArgument>
+		<IType type="e">
+			<_id type="a">GUID 4487b0d0-6696-45d6-8c92-044f88a3febd</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:39:31</_modifiedTime>
+			<_declaration type="a">int&amp;</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID c877568e-0493-47bb-83dc-0a6e490fbe4b</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_name type="a">target</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:21:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:21:0</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID c9a1cdad-02f6-4406-8416-2b5149bc7cc1</value>
+			</AggregatesList>
+		</IArgument>
+		<IType type="e">
+			<_id type="a">GUID c9a1cdad-02f6-4406-8416-2b5149bc7cc1</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:39:31</_modifiedTime>
+			<_declaration type="a">std::string&amp;</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID c2a5532e-97dd-407c-84c9-7885e7b25ec1</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_name type="a">host</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:16:5</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:16:5</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID 197c4b9b-b0c7-4375-90a0-f2da94f83a54</value>
+			</AggregatesList>
+		</IArgument>
+		<IType type="e">
+			<_id type="a">GUID 197c4b9b-b0c7-4375-90a0-f2da94f83a54</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:39:31</_modifiedTime>
+			<_declaration type="a">std::string&amp;</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID 22a6fbcf-b65b-4b59-a5ac-45fe22b21cf4</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_name type="a">port</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:16:19</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:16:19</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID 1ac677ad-7fbf-47ea-b1d4-089601a6f092</value>
+			</AggregatesList>
+		</IArgument>
+		<IType type="e">
+			<_id type="a">GUID 1ac677ad-7fbf-47ea-b1d4-089601a6f092</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:39:31</_modifiedTime>
+			<_declaration type="a">std::string&amp;</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID e5d0c23b-f822-4cfd-8a1f-7f83628ea5d9</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_name type="a">contentType</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:17:3</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:17:3</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID c7c8ea76-70be-40d2-bcd3-69cc32edc537</value>
+				<value>GUID 4eb2ac01-ef03-47dd-9ae9-6d2107323579</value>
+			</AggregatesList>
+		</IArgument>
+		<ILiteralSpecification type="e">
+			<_id type="a">GUID c7c8ea76-70be-40d2-bcd3-69cc32edc537</_id>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_modifiedTimeWeak type="a">9.24.2019::7:17:3</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:17:3</_modifiedTime>
+			<_value type="a">&quot;&quot;</_value>
+		</ILiteralSpecification>
+		<IType type="e">
+			<_id type="a">GUID 4eb2ac01-ef03-47dd-9ae9-6d2107323579</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:39:31</_modifiedTime>
+			<_declaration type="a">std::string</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID 23dc031d-596e-4e72-b8df-d7c3bf8e8967</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">body</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::9:34:31</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::9:34:31</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID f0561c26-9619-492f-9759-82fe1f928899</value>
+				<value>GUID 0df51fb9-954f-48e1-af2e-97f8992613f8</value>
+			</AggregatesList>
+		</IArgument>
+		<ILiteralSpecification type="e">
+			<_id type="a">GUID f0561c26-9619-492f-9759-82fe1f928899</_id>
+			<_modifiedTimeWeak type="a">9.24.2019::9:34:31</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::9:34:31</_modifiedTime>
+			<_value type="a">&quot;&quot;</_value>
+		</ILiteralSpecification>
+		<IType type="e">
+			<_id type="a">GUID 0df51fb9-954f-48e1-af2e-97f8992613f8</_id>
+			<_myState type="a">8192</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.2.1990::0:0:0</_modifiedTime>
+			<_declaration type="a">std::string</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID 50954d6c-e6da-4884-89de-bab699610ec1</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_name type="a">version</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::9:34:33</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::9:34:33</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID 993f8c53-e112-41d6-af90-99106b6cd027</value>
+				<value>GUID 26ecd96e-071b-4cfe-84c9-f807508b1452</value>
+			</AggregatesList>
+		</IArgument>
+		<ILiteralSpecification type="e">
+			<_id type="a">GUID 993f8c53-e112-41d6-af90-99106b6cd027</_id>
+			<_modifiedTimeWeak type="a">9.24.2019::9:34:33</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::9:34:33</_modifiedTime>
+			<_value type="a">11</_value>
+		</ILiteralSpecification>
+		<IType type="e">
+			<_id type="a">GUID 26ecd96e-071b-4cfe-84c9-f807508b1452</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:39:31</_modifiedTime>
+			<_declaration type="a">unsigned</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID 90406c5f-e114-4c58-8826-a0017aafcab9</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_name type="a">keepAlive</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::9:34:40</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::9:34:40</_modifiedTime>
+			<_typeOf type="r">
+				<IHandle type="e">
+					<_hm2Class type="a">IType</_hm2Class>
+					<_hsubsystem type="a">PredefinedTypesCpp</_hsubsystem>
+					<_hname type="a">bool</_hname>
+					<_hid type="a">GUID e6c263cc-4bc5-4a11-b32d-02148c93add0</_hid>
+				</IHandle>
+			</_typeOf>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID ed354dcc-ce44-4f19-a12a-c3d9b5332c5b</value>
+			</AggregatesList>
+		</IArgument>
+		<ILiteralSpecification type="e">
+			<_id type="a">GUID ed354dcc-ce44-4f19-a12a-c3d9b5332c5b</_id>
+			<_modifiedTimeWeak type="a">9.24.2019::9:34:40</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::9:34:40</_modifiedTime>
+			<_value type="a">true</_value>
+		</ILiteralSpecification>
+		<IArgument type="e">
+			<_id type="a">GUID 7bfc6a11-8001-40fe-8be3-800f77c12b25</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_name type="a">basicAuth</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:17:7</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:17:7</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID bf8995a8-1d58-4783-97ea-8f30030b0d5a</value>
+				<value>GUID a89dfad1-ed79-46db-a954-28def3639350</value>
+			</AggregatesList>
+		</IArgument>
+		<ILiteralSpecification type="e">
+			<_id type="a">GUID bf8995a8-1d58-4783-97ea-8f30030b0d5a</_id>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_modifiedTimeWeak type="a">9.24.2019::7:17:7</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:17:7</_modifiedTime>
+			<_value type="a">&quot;&quot;</_value>
+		</ILiteralSpecification>
+		<IType type="e">
+			<_id type="a">GUID a89dfad1-ed79-46db-a954-28def3639350</_id>
+			<_myState type="a">8192</_myState>
+			<_rmmServerID type="a">-1</_rmmServerID>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:39:31</_modifiedTime>
+			<_declaration type="a">std::string</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IPrimitiveOperation type="e">
+			<_id type="a">GUID 6df4b0e4-8420-4ded-9aa0-3791ca9de645</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">execProcessMsg</_name>
+			<_modifiedTimeWeak type="a">9.27.2019::1:32:28</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.27.2019::1:32:28</_modifiedTime>
+			<_lastID type="a">1</_lastID>
+			<_virtual type="a">0</_virtual>
+			<_returnType type="r">
+				<IHandle type="e">
+					<_hm2Class type="a">IType</_hm2Class>
+					<_hsubsystem type="a">PredefinedTypesCpp</_hsubsystem>
+					<_hname type="a">void</_hname>
+					<_hid type="a">GUID c6b70728-b655-45a0-abb7-8ea5d3da94be</_hid>
+				</IHandle>
+			</_returnType>
+			<_abstract type="a">0</_abstract>
+			<_final type="a">0</_final>
+			<_concurrency type="a">Sequential</_concurrency>
+			<_protection type="a">iPublic</_protection>
+			<_static type="a">0</_static>
+			<_constant type="a">0</_constant>
+			<_itsBody type="p"><IBody type="e">
+				<_bodyData type="a">std::cout &lt;&lt; &quot;execProcessMsg-----------------&quot; &lt;&lt; std::endl;%0D
+S_HttpRes_Msg *res = (S_HttpRes_Msg*)msg;%0D
+#if 0%0D
+std::fstream _h264SendFile(&quot;sendH264File.jpeg&quot;,std::fstream::out | std::fstream::binary);%0D
+%0D
+%0D
+%0D
+tjhandle handle = NULL;%0D
+   int width, height, subsample, colorspace;%0D
+   int flags = 0;%0D
+   int padding = 1; // 1%E6%88%964%E5%9D%87%E5%8F%AF%EF%BC%8C%E4%BD%86%E4%B8%8D%E8%83%BD%E6%98%AF0%0D
+   int ret = 0;%0D
+%0D
+   handle = tjInitDecompress();%0D
+   tjDecompressHeader3(handle, (const unsigned char *)res-&gt;_body.data(), (unsigned long)res-&gt;_body.size(), &amp;width, &amp;height, &amp;subsample, &amp;colorspace);%0D
+%0D
+   printf(&quot;w: %25d h: %25d subsample: %25d color: %25d\n&quot;, width, height, subsample, colorspace);%0D
+%0D
+%0D
+_h264SendFile.write(res-&gt;_body.data(), res-&gt;_body.size());%0D
+_h264SendFile.close();%0D
+#endif</_bodyData>
+			</IBody>
+			</_itsBody>
+			<AggregatesList type="e">
+				<value>GUID e45461b0-8325-478b-aa99-db359f1a5e9d</value>
+			</AggregatesList>
+		</IPrimitiveOperation>
+		<IArgument type="e">
+			<_id type="a">GUID e45461b0-8325-478b-aa99-db359f1a5e9d</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">msg</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::8:2:55</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::8:2:55</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID 6e02b8f9-0411-4258-a6a2-e656a0363528</value>
+			</AggregatesList>
+		</IArgument>
+		<IType type="e">
+			<_id type="a">GUID 6e02b8f9-0411-4258-a6a2-e656a0363528</_id>
+			<_myState type="a">8192</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.2.1990::0:0:0</_modifiedTime>
+			<_declaration type="a">S_Http_Msg*</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IPrimitiveOperation type="e">
+			<_id type="a">GUID 53b078ed-75fd-4555-a9bc-3c872612ca3d</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">init</_name>
+			<_modifiedTimeWeak type="a">9.27.2019::1:32:28</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.27.2019::1:32:28</_modifiedTime>
+			<_virtual type="a">0</_virtual>
+			<Args type="c">
+				<IRPYRawContainer type="e">
+					<size type="a">0</size>
+				</IRPYRawContainer>
+			</Args>
+			<_returnType type="r">
+				<IHandle type="e">
+					<_hm2Class type="a">IType</_hm2Class>
+					<_hsubsystem type="a">PredefinedTypesCpp</_hsubsystem>
+					<_hname type="a">void</_hname>
+					<_hid type="a">GUID c6b70728-b655-45a0-abb7-8ea5d3da94be</_hid>
+				</IHandle>
+			</_returnType>
+			<_abstract type="a">0</_abstract>
+			<_final type="a">0</_final>
+			<_concurrency type="a">Sequential</_concurrency>
+			<_protection type="a">iPublic</_protection>
+			<_static type="a">0</_static>
+			<_constant type="a">0</_constant>
+			<_itsBody type="p"><IBody type="e">
+				<_bodyData type="a">S_HttpClient_InitMoudle();%0D
+S_HttpClient_Run();</_bodyData>
+			</IBody>
+			</_itsBody>
+		</IPrimitiveOperation>
+		<IAttribute type="e">
+			<_id type="a">GUID 0d8529f3-35af-4be9-8cbb-be30867faeed</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">_processTp</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::8:1:29</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::8:1:29</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_protection type="a">iPublic</_protection>
+			<_static type="a">0</_static>
+			<_isReferenceAttr type="a">0</_isReferenceAttr>
+			<_isConstant type="a">0</_isConstant>
+			<AggregatesList type="e">
+				<value>GUID 07cda851-50d7-4d40-84bd-1d84559dadac</value>
+			</AggregatesList>
+		</IAttribute>
+		<IType type="e">
+			<_id type="a">GUID 07cda851-50d7-4d40-84bd-1d84559dadac</_id>
+			<_myState type="a">8192</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.2.1990::0:0:0</_modifiedTime>
+			<_declaration type="a">boost::asio::thread_pool</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IClass type="e">
+			<_id type="a">GUID 88b7e5b0-d624-4538-974e-b910567c241a</_id>
+			<_myState type="a">8192</_myState>
+			<_properties type="p"><IPropertyContainer type="e">
+				<Subjects type="c">
+					<IRPYRawContainer type="e">
+						<size type="a">2</size>
+						<IPropertySubject type="e">
+							<_Name type="a">CG</_Name>
+							<Metaclasses type="c">
+								<IRPYRawContainer type="e">
+									<size type="a">1</size>
+									<IPropertyMetaclass type="e">
+										<_Name type="a">Class</_Name>
+										<Properties type="c">
+											<IRPYRawContainer type="e">
+												<size type="a">1</size>
+												<IProperty type="e">
+													<_Name type="a">UseAsExternal</_Name>
+													<_Value type="a">True</_Value>
+													<_Type type="a">Bool</_Type>
+												</IProperty>
+												
+											</IRPYRawContainer>
+										</Properties>
+									</IPropertyMetaclass>
+									
+								</IRPYRawContainer>
+							</Metaclasses>
+						</IPropertySubject>
+						
+						<IPropertySubject type="e">
+							<_Name type="a">CPP_CG</_Name>
+							<Metaclasses type="c">
+								<IRPYRawContainer type="e">
+									<size type="a">1</size>
+									<IPropertyMetaclass type="e">
+										<_Name type="a">Class</_Name>
+										<Properties type="c">
+											<IRPYRawContainer type="e">
+												<size type="a">1</size>
+												<IProperty type="e">
+													<_Name type="a">SpecIncludes</_Name>
+													<_Value type="a">&lt;string&gt;</_Value>
+													<_Type type="a">String</_Type>
+												</IProperty>
+												
+											</IRPYRawContainer>
+										</Properties>
+									</IPropertyMetaclass>
+									
+								</IRPYRawContainer>
+							</Metaclasses>
+						</IPropertySubject>
+						
+					</IRPYRawContainer>
+				</Subjects>
+			</IPropertyContainer>
+			</_properties>
+			<_name type="a">S_HttpClient_Session</_name>
+			<_modifiedTimeWeak type="a">1.17.2020::7:47:24</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.17.2020::7:47:24</_modifiedTime>
+			<_lastID type="a">1</_lastID>
+			<weakCGTime type="a">1.17.2020::7:47:24</weakCGTime>
+			<strongCGTime type="a">1.17.2020::7:47:24</strongCGTime>
+			<_itsStateChart type="r">
+				<IHandle type="e">
+				</IHandle>
+			</_itsStateChart>
+			<_classModifier type="a">Unspecified</_classModifier>
+			<AggregatesList type="e">
+				<value>GUID 43292dc2-59a2-48ba-92b8-d99e7d01a10a</value>
+				<value>GUID fd0c803b-460c-4650-a9fe-1332a1e980c9</value>
+				<value>GUID 0dc4fd0f-78c1-45bb-9c0a-bf0a3a6750cc</value>
+			</AggregatesList>
+		</IClass>
+		<IConstructor type="e">
+			<_id type="a">GUID 43292dc2-59a2-48ba-92b8-d99e7d01a10a</_id>
+			<_myState type="a">73728</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:21:4</_modifiedTime>
+			<_virtual type="a">0</_virtual>
+			<Args type="c">
+				<IRPYRawContainer type="e">
+					<size type="a">0</size>
+				</IRPYRawContainer>
+			</Args>
+			<_returnType type="r">
+				<IHandle type="e">
+				</IHandle>
+			</_returnType>
+			<_abstract type="a">0</_abstract>
+			<_final type="a">0</_final>
+			<_concurrency type="a">Sequential</_concurrency>
+			<_protection type="a">iPublic</_protection>
+			<_static type="a">0</_static>
+			<_constant type="a">0</_constant>
+		</IConstructor>
+		<IDestructor type="e">
+			<_id type="a">GUID fd0c803b-460c-4650-a9fe-1332a1e980c9</_id>
+			<_myState type="a">73728</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:21:4</_modifiedTime>
+			<_virtual type="a">0</_virtual>
+			<Args type="c">
+				<IRPYRawContainer type="e">
+					<size type="a">0</size>
+				</IRPYRawContainer>
+			</Args>
+			<_returnType type="r">
+				<IHandle type="e">
+				</IHandle>
+			</_returnType>
+			<_abstract type="a">0</_abstract>
+			<_final type="a">0</_final>
+			<_concurrency type="a">Sequential</_concurrency>
+			<_protection type="a">iPublic</_protection>
+			<_static type="a">0</_static>
+			<_constant type="a">0</_constant>
+			<_itsBody type="p"><IBody type="e">
+			</IBody>
+			</_itsBody>
+		</IDestructor>
+		<IPrimitiveOperation type="e">
+			<_id type="a">GUID 0dc4fd0f-78c1-45bb-9c0a-bf0a3a6750cc</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">sendReqMsg</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:21:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:21:0</_modifiedTime>
+			<_lastID type="a">8</_lastID>
+			<_virtual type="a">0</_virtual>
+			<_returnType type="r">
+				<IHandle type="e">
+					<_hm2Class type="a">IType</_hm2Class>
+					<_hsubsystem type="a">PredefinedTypesCpp</_hsubsystem>
+					<_hname type="a">void</_hname>
+					<_hid type="a">GUID c6b70728-b655-45a0-abb7-8ea5d3da94be</_hid>
+				</IHandle>
+			</_returnType>
+			<_abstract type="a">0</_abstract>
+			<_final type="a">0</_final>
+			<_concurrency type="a">Sequential</_concurrency>
+			<_protection type="a">iPublic</_protection>
+			<_static type="a">0</_static>
+			<_constant type="a">0</_constant>
+			<AggregatesList type="e">
+				<value>GUID ffe97069-d3e1-4912-9eb0-03b50381a330</value>
+				<value>GUID 55e65dd8-9f8f-4d28-ac6f-864b45e455fd</value>
+				<value>GUID 763518cc-7d3b-4345-be24-90f04456f891</value>
+				<value>GUID 3984a68f-f80c-4513-bb5d-55ccfa2a29fa</value>
+				<value>GUID b8750be0-65d6-474d-9c43-16422411082d</value>
+				<value>GUID e304908f-27a4-4f2a-9485-779058fd3577</value>
+				<value>GUID 5de9dba2-2086-4342-8f50-bee9a7b6979a</value>
+				<value>GUID 0cf88d90-c9d0-4d44-bef1-cba3bd924699</value>
+			</AggregatesList>
+		</IPrimitiveOperation>
+		<IArgument type="e">
+			<_id type="a">GUID ffe97069-d3e1-4912-9eb0-03b50381a330</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">method</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:13:23</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:13:23</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID 2a16c156-b76f-45fe-8634-5ab59136db1f</value>
+			</AggregatesList>
+		</IArgument>
+		<IType type="e">
+			<_id type="a">GUID 2a16c156-b76f-45fe-8634-5ab59136db1f</_id>
+			<_myState type="a">8192</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.2.1990::0:0:0</_modifiedTime>
+			<_declaration type="a">int&amp;</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID 55e65dd8-9f8f-4d28-ac6f-864b45e455fd</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">target</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:21:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:21:0</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID 32190a70-eac5-481a-93cb-a1133cc41721</value>
+			</AggregatesList>
+		</IArgument>
+		<IType type="e">
+			<_id type="a">GUID 32190a70-eac5-481a-93cb-a1133cc41721</_id>
+			<_myState type="a">8192</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.2.1990::0:0:0</_modifiedTime>
+			<_declaration type="a">std::string&amp;</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID 763518cc-7d3b-4345-be24-90f04456f891</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">version</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:15:32</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:15:32</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID ee23e5f6-8c73-4a29-a1ce-a37ced8169c4</value>
+			</AggregatesList>
+		</IArgument>
+		<IType type="e">
+			<_id type="a">GUID ee23e5f6-8c73-4a29-a1ce-a37ced8169c4</_id>
+			<_myState type="a">8192</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.2.1990::0:0:0</_modifiedTime>
+			<_declaration type="a">unsigned</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID 3984a68f-f80c-4513-bb5d-55ccfa2a29fa</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">keepAlive</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:15:57</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:15:57</_modifiedTime>
+			<_typeOf type="r">
+				<IHandle type="e">
+					<_hm2Class type="a">IType</_hm2Class>
+					<_hsubsystem type="a">PredefinedTypesCpp</_hsubsystem>
+					<_hname type="a">bool</_hname>
+					<_hid type="a">GUID e6c263cc-4bc5-4a11-b32d-02148c93add0</_hid>
+				</IHandle>
+			</_typeOf>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+		</IArgument>
+		<IArgument type="e">
+			<_id type="a">GUID b8750be0-65d6-474d-9c43-16422411082d</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">host</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:16:5</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:16:5</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID 498ad9a3-3014-47e3-803c-e13d26938add</value>
+			</AggregatesList>
+		</IArgument>
+		<IType type="e">
+			<_id type="a">GUID 498ad9a3-3014-47e3-803c-e13d26938add</_id>
+			<_myState type="a">8192</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.2.1990::0:0:0</_modifiedTime>
+			<_declaration type="a">std::string&amp;</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID e304908f-27a4-4f2a-9485-779058fd3577</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">port</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:16:19</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:16:19</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID 8185d450-a981-42a9-9909-54f6662ac51c</value>
+			</AggregatesList>
+		</IArgument>
+		<IType type="e">
+			<_id type="a">GUID 8185d450-a981-42a9-9909-54f6662ac51c</_id>
+			<_myState type="a">8192</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.2.1990::0:0:0</_modifiedTime>
+			<_declaration type="a">std::string&amp;</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID 5de9dba2-2086-4342-8f50-bee9a7b6979a</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">contentType</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:17:3</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:17:3</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID c2a390d2-8583-42f7-a18e-5c4b7a260283</value>
+				<value>GUID 78c48478-6e42-47bd-bd45-d7a741ba0977</value>
+			</AggregatesList>
+		</IArgument>
+		<ILiteralSpecification type="e">
+			<_id type="a">GUID c2a390d2-8583-42f7-a18e-5c4b7a260283</_id>
+			<_modifiedTimeWeak type="a">9.24.2019::7:17:3</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:17:3</_modifiedTime>
+			<_value type="a">&quot;&quot;</_value>
+		</ILiteralSpecification>
+		<IType type="e">
+			<_id type="a">GUID 78c48478-6e42-47bd-bd45-d7a741ba0977</_id>
+			<_myState type="a">8192</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.2.1990::0:0:0</_modifiedTime>
+			<_declaration type="a">std::string</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		<IArgument type="e">
+			<_id type="a">GUID 0cf88d90-c9d0-4d44-bef1-cba3bd924699</_id>
+			<_myState type="a">8192</_myState>
+			<_name type="a">basicAuth</_name>
+			<_modifiedTimeWeak type="a">9.24.2019::7:17:7</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:17:7</_modifiedTime>
+			<_isOrdered type="a">0</_isOrdered>
+			<_argumentDirection type="a">In</_argumentDirection>
+			<AggregatesList type="e">
+				<value>GUID 40f24d84-830f-4157-9b1c-00a9758196fa</value>
+				<value>GUID 36ed2b08-0a2d-4ae2-88dc-6dca3da59d10</value>
+			</AggregatesList>
+		</IArgument>
+		<ILiteralSpecification type="e">
+			<_id type="a">GUID 40f24d84-830f-4157-9b1c-00a9758196fa</_id>
+			<_modifiedTimeWeak type="a">9.24.2019::7:17:7</_modifiedTimeWeak>
+			<_modifiedTime type="a">9.24.2019::7:17:7</_modifiedTime>
+			<_value type="a">&quot;&quot;</_value>
+		</ILiteralSpecification>
+		<IType type="e">
+			<_id type="a">GUID 36ed2b08-0a2d-4ae2-88dc-6dca3da59d10</_id>
+			<_myState type="a">8192</_myState>
+			<_modifiedTimeWeak type="a">1.2.1990::0:0:0</_modifiedTimeWeak>
+			<_modifiedTime type="a">1.2.1990::0:0:0</_modifiedTime>
+			<_declaration type="a">std::string</_declaration>
+			<_kind type="a">Language</_kind>
+		</IType>
+		
+	</RHAPSODY-MODEL>
+	<OslcLinks type="c">
+		<IRPYRawContainer type="e">
+			<size type="a">0</size>
+		</IRPYRawContainer>
+	</OslcLinks>
+
+<INCLUDES-RHAPSODY-INDEX>false</INCLUDES-RHAPSODY-INDEX>
+</RhapsodyArchive>
+
