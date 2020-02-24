@@ -12,7 +12,7 @@
 #define HttpClientTest_S_HttpClient_MainSession_H
 
 #include <oxf.h>
-#include "S_HttpClient_ServiceSDK.h"
+#include "S_HttpClientAPI.h"
 #include <boost/asio.hpp>
 class S_Http_Msg;
 

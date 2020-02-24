@@ -14,7 +14,7 @@
 #include <oxf.h>
 #include "HttpServerTest.h"
 #include <omcollec.h>
-#include "S_HttpServer_ServiceSDK.h"
+#include "S_HttpServerAPI.h"
 #include <boost/beast.hpp>
 #include <boost/asio.hpp>
 #include <unordered_map>

@@ -41,8 +41,6 @@ S_HTTP_SERVER_EXPORT void S_HTTP_SERVER_CALL S_HttpServer_StopMoudle();
 
 S_HTTP_SERVER_EXPORT bool S_HTTP_SERVER_CALL S_HttpServer_Listen(std::string &ipAddress, unsigned short port);
 
-S_HTTP_SERVER_EXPORT void S_HTTP_SERVER_CALL S_HttpServer_Run();
-
 S_HTTP_SERVER_EXPORT void S_HTTP_SERVER_CALL S_HttpServer_AddHandle(const std::string &url, ReqHandler req_handler);
 
 S_HTTP_SERVER_EXPORT void S_HTTP_SERVER_CALL
