@@ -158,6 +158,10 @@ void S_HttpServer_Service::startAccept() {
     //#]
 }
 
+void S_HttpServer_Service::addFilePath(const std::string &filePath) {
+    _filePaths.insert(filePath);
+}
+
 void S_HttpServer_Service::addHandle(const std::string &url, ReqHandler req_handler) {
     if (_handlerMap.find(url) != _handlerMap.end())
         return;

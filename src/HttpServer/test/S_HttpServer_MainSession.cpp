@@ -89,7 +89,7 @@ void
 S_HttpServer_MainSession::sendResMsg(std::string &connectionId, boost::beast::http::status status, unsigned version,
                                      std::string &body) {
     //#[ operation sendResMsg(std::string&,http::status,unsigned,std::string&)
-    S_HttpServer_SendResMsg(connectionId, (int) status, version, body);
+    S_HttpServer_SendResMsg(connectionId, (int) status, body, version);
     //#]
 }
 

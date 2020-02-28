@@ -17,11 +17,15 @@ bool S_HTTP_SERVER_CALL S_HttpServer_Listen(std::string &ipAddress, unsigned sho
     return S_HttpServer_Service::Instance()->listen(ipAddress, port);
 }
 
+void S_HTTP_SERVER_CALL S_HttpServer_AddFilePath(const std::string &filePath) {
+    S_HttpServer_Service::Instance()->addFilePath(filePath);
+}
+
 void S_HTTP_SERVER_CALL S_HttpServer_AddHandle(const std::string &url, ReqHandler req_handler) {
     S_HttpServer_Service::Instance()->addHandle(url, req_handler);
 }
 
-void S_HTTP_SERVER_CALL S_HttpServer_SendResMsg(std::string &connectionId, int status, unsigned version, std::string &body) {
+void S_HTTP_SERVER_CALL S_HttpServer_SendResMsg(std::string &connectionId, int status, std::string &body, unsigned version) {
     S_HttpServer_Service::Instance()->sendResMsg(connectionId, (boost::beast::http::status) status, version, body);
 }
 

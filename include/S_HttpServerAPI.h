@@ -2,7 +2,6 @@
 #define SHTTPSERVICESDK_H
 
 #include "S_HttpReq_Msg.h"
-
 #ifdef BOOST_IOCONTEXT
 #include <boost/asio/io_context.hpp>
 #include <boost/shared_ptr.hpp>
@@ -41,10 +40,12 @@ S_HTTP_SERVER_EXPORT void S_HTTP_SERVER_CALL S_HttpServer_StopMoudle();
 
 S_HTTP_SERVER_EXPORT bool S_HTTP_SERVER_CALL S_HttpServer_Listen(std::string &ipAddress, unsigned short port);
 
+S_HTTP_SERVER_EXPORT void S_HTTP_SERVER_CALL S_HttpServer_AddFilePath(const std::string &filePath);
+
 S_HTTP_SERVER_EXPORT void S_HTTP_SERVER_CALL S_HttpServer_AddHandle(const std::string &url, ReqHandler req_handler);
 
 S_HTTP_SERVER_EXPORT void S_HTTP_SERVER_CALL
-S_HttpServer_SendResMsg(std::string &connectionId, int status, unsigned version, std::string &body);
+S_HttpServer_SendResMsg(std::string &connectionId, int status, std::string &body, unsigned version = 11);
 
 #ifdef BOOST_IOCONTEXT
 S_HTTP_SERVER_EXPORT void  S_HTTP_SERVER_CALL S_HttpServer_GetIOContext(io_context_weak_ptr  &ioContext);

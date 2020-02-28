@@ -130,12 +130,15 @@ void S_HttpServer_Connection::handleRequest(boost::beast::string_view docRoot,
     std::string url = path_cat(docRoot, req.target());
     if (req.target().back() == '/')
         url.append("index.html");
-    if (url.find(".")) {
-        printf("url ===== %s\n", url.c_str());
+    if (req.target().find(".") != boost::beast::string_view::npos) {
         // Attempt to open the file
         boost::beast::error_code ec;
         boost::beast::http::file_body::value_type body;
-        body.open((std::string("./www") + url).c_str(), boost::beast::file_mode::scan, ec);
+        for (auto it : _service._filePaths) {
+            body.open((it + url).c_str(), boost::beast::file_mode::scan, ec);
+            if (!ec)
+                break;
+        }
 
         // Handle the case where the file doesn't exist
         if (ec == boost::beast::errc::no_such_file_or_directory)
@@ -219,7 +222,6 @@ void S_HttpServer_Connection::handleRequest(boost::beast::string_view docRoot,
             res.keep_alive(req.keep_alive());
             return send(std::move(res));
         }
-
 
         std::string body = "";
         std::uint64_t contentLength = 0;

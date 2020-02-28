@@ -15,6 +15,7 @@
 #include "S_HttpServer_ConnectionManager.h"
 #include "boost/thread.hpp"
 #include "boost/asio.hpp"
+#include <unordered_set>
 #include <memory>
 class S_Http_Msg;
 
@@ -76,6 +77,8 @@ public :
     //## operation startAccept()
     void startAccept();
 
+    void addFilePath(const std::string &filePath);
+
     void addHandle(const std::string &url, ReqHandler req_handler);
 
     bool handleHttp(S_HttpReq_Msg *msg);
@@ -101,6 +104,8 @@ public :
     void* _pUser;		//## attribute _pUser
 
     std::unordered_map<std::string, ReqHandler> _handlerMap;
+
+    std::unordered_set<std::string> _filePaths;
 };
 
 #endif
