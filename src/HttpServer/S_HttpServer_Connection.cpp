@@ -12,6 +12,7 @@
 #include "S_HttpReq_Msg.h"
 #include "S_HttpServer_ConnectionManager.h"
 #include "S_HttpServer_Service.h"
+#include "Util.h"
 #include <iostream>
 //## package HttpServer
 
@@ -132,10 +133,11 @@ void S_HttpServer_Connection::handleRequest(boost::beast::string_view docRoot,
         url.append("index.html");
     if (req.target().find(".") != boost::beast::string_view::npos) {
         // Attempt to open the file
+        std::string urlString = urldecode(url);
         boost::beast::error_code ec;
         boost::beast::http::file_body::value_type body;
         for (auto it : _service._filePaths) {
-            body.open((it + url).c_str(), boost::beast::file_mode::scan, ec);
+            body.open((it + urlString).c_str(), boost::beast::file_mode::scan, ec);
             if (!ec)
                 break;
         }
@@ -420,8 +422,10 @@ void S_HttpServer_Connection::handleRead(boost::beast::error_code e, size_t byte
             handleRequest("", std::move(_req), send_lambda(*this));
         });
     } else if (e == boost::beast::http::error::end_of_stream) {
-        //std::cout<<_connectionId << " read:" << e.message() << ":" << e << std::endl;
+        std::cout<<_connectionId << " read:" << e.message() << ":" << e << std::endl;
         shutdown();
+    } else {
+        std::cout<<_connectionId << " read:" << e.message() << ":" << e << std::endl;
     }
     //#]
 }
