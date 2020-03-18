@@ -59,7 +59,7 @@ public :
     //## operation sendReqMsg(void*,READFROMSERVER,int&,std::string&,unsigned,bool,std::string&,std::string&,std::string&,std::string&,std::string&)
     void sendReqMsg(void *pUser, READFROMSERVER readFromServer, int &method, std::string &target, unsigned version,
                     bool keepAlive, std::string &host, std::string &port, std::string &contentType, std::string &body,
-                    std::string &basicAuth);
+                    std::string &basicAuth, bool ssl);
 
     std::string base64_encode(std::uint8_t const *data, std::size_t len);
 

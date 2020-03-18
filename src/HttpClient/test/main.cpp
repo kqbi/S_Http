@@ -73,8 +73,8 @@ int main(int argc, char* argv[]) {
         std::string target = "/onvif-http/snapshot?Profile_1";
         unsigned version = 11;
         bool keepAlive = true;
-        std::string host = "192.168.1.165";
-        std::string port = "";
+        std::string host = "127.0.0.1";
+        std::string port = "16972";
         std::string contentType = "";
         std::string body = "";
         std::string basicAuth = "admin:admin123";

@@ -45,7 +45,7 @@ S_HTTP_CLIENT_EXPORT void S_HTTP_CLIENT_CALL S_HttpClient_Run();
 typedef void (*READFROMSERVER)(void *pUser, S_Http_Msg *msg);
 S_HTTP_CLIENT_EXPORT void S_HTTP_CLIENT_CALL
 S_HttpClient_SendReqMsg(void *pUser, READFROMSERVER readFromServer, int &method, std::string &target, std::string &host,
-                        std::string &port, std::string contentType = "", std::string body = "", unsigned version = 11,
+                        std::string &port, std::string contentType = "", std::string body = "", bool ssl = false, unsigned version = 11,
                         bool keepAlive = true, std::string basicAuth = "");
 
 #ifdef BOOST_IOCONTEXT

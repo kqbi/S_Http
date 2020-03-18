@@ -11,10 +11,12 @@
 #include "S_HttpClient_Service.h"
 #include "S_Http_Msg.h"
 #include "S_HttpClient_Connect.h"
+#include "S_HttpsClient_Connect.h"
 #include <boost/archive/iterators/base64_from_binary.hpp>
 #include <boost/beast/core/detail/base64.hpp>
 #include <boost/archive/iterators/binary_from_base64.hpp>
 #include <boost/archive/iterators/transform_width.hpp>
+#include <root_certificates.hpp>
 //## package HttpClient
 
 //## class S_HttpClient_Service
@@ -65,9 +67,21 @@ void S_HttpClient_Service::run() {
 
 void S_HttpClient_Service::sendReqMsg(void *pUser, READFROMSERVER readFromServer, int &method, std::string &target,
                                       unsigned version, bool keepAlive, std::string &host, std::string &port,
-                                      std::string &contentType, std::string &body, std::string &basicAuth) {
+                                      std::string &contentType, std::string &body, std::string &basicAuth, bool ssl) {
     //#[ operation sendReqMsg(void*,READFROMSERVER,int&,std::string&,unsigned,bool,std::string&,std::string&,std::string&,std::string&,std::string&)
-    S_HttpClient_Connect *connect = new S_HttpClient_Connect(pUser, readFromServer, *_ioContext, *this);
+
+    //S_HttpClient_Connect *connect = new S_HttpClient_Connect(pUser, readFromServer, *_ioContext, *this);
+
+    boost::asio::ssl::context ctx{boost::asio::ssl::context::tlsv12_client};
+
+    // This holds the root certificate used for verification
+    load_root_certificates(ctx);
+
+    // Verify the remote server's certificate
+    ctx.set_verify_mode(boost::asio::ssl::verify_peer);
+    S_HttpsClient_Connect *connect = new S_HttpsClient_Connect(*_ioContext,ctx);
+
+#if 1
     connect->_req.version(version);
     connect->_req.method((boost::beast::http::verb) method);
     connect->_req.target(target);
@@ -97,6 +111,7 @@ void S_HttpClient_Service::sendReqMsg(void *pUser, READFROMSERVER readFromServer
         port = "80";
 
     connect->resolve(host, port);
+#endif
     //#]
 }
 

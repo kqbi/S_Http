@@ -15,6 +15,8 @@ elseif (CMAKE_SYSTEM_NAME MATCHES "Windows")
     set(THIRDPARTY "D:/work/projects/Thirdparty")
     set(BOOST_DATE_TIME_LIB libboost_date_time-vc141-mt-s-x64-1_72.lib)
     set(BOOST_THREAD_LIB libboost_thread-vc141-mt-s-x64-1_72.lib)
+    set(SSL_LIB libssl64MT.lib)
+    set(CRYPTO_LIB libcrypto64MT.lib)
 endif ()
 
 #加载自定义模块
@@ -39,6 +41,16 @@ set(BOOST_LIB_PATH ${BOOST_ROOT_PATH}/lib/${platform})
 INCLUDE_DIRECTORIES(${BOOST_INCLUDE_PATH})
 link_directories(${BOOST_LIB_PATH})
 list(APPEND LINK_LIB_LIST ${BOOST_DATE_TIME_LIB} ${BOOST_THREAD_LIB})
+
+#ssl
+if (WIN32)
+set(SSL_ROOT_PATH ${THIRDPARTY}/openssl)
+set(SSL_INCLUDE_PATH ${SSL_ROOT_PATH}/include)
+set(SSL_LIB_PATH ${SSL_ROOT_PATH}/lib/${platform}/VC/static)
+INCLUDE_DIRECTORIES(${SSL_INCLUDE_PATH})
+link_directories(${SSL_LIB_PATH})
+list(APPEND LINK_LIB_LIST ${SSL_LIB} ${CRYPTO_LIB})
+endif (WIN32)
 
 ##log4cplus
 #set(LOG_ROOT_PATH "${THIRDPARTY}/log4cplus")

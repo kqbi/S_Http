@@ -18,10 +18,10 @@ void S_HTTP_CLIENT_CALL S_HttpClient_Run() {
 }
 
 void S_HTTP_CLIENT_CALL S_HttpClient_SendReqMsg(void *pUser, READFROMSERVER readFromServer, int &method, std::string &target,
-                                      std::string &host, std::string &port, std::string contentType, std::string body,
+                                      std::string &host, std::string &port, std::string contentType, std::string body, bool ssl,
                                       unsigned version, bool keepAlive, std::string basicAuth) {
     S_HttpClient_Service::Instance()->sendReqMsg(pUser, readFromServer, method, target, version, keepAlive, host, port,
-                                                 contentType, body, basicAuth);
+                                                 contentType, body, basicAuth, ssl);
 }
 
 #ifdef BOOST_IOCONTEXT
