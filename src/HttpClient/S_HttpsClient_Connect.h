@@ -17,12 +17,13 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include "S_HttpClient_ConnectBase.h"
 
-class S_HttpsClient_Connect {
+class S_HttpsClient_Connect : public S_HttpClient_ConnectBase {
 public:
     explicit
     S_HttpsClient_Connect(boost::asio::io_context &ioc, boost::asio::ssl::context &ctx)
-            : _resolver(boost::asio::make_strand(ioc)), _stream(boost::asio::make_strand(ioc), ctx) {
+            : S_HttpClient_ConnectBase(ioc), _stream(boost::asio::make_strand(ioc), ctx) {
     }
 
     void resolve(std::string &host, std::string &port);
@@ -39,11 +40,7 @@ public:
 
     void on_shutdown(boost::beast::error_code ec);
 
-    boost::asio::ip::tcp::resolver _resolver;
     boost::beast::ssl_stream<boost::beast::tcp_stream> _stream;
-    boost::beast::flat_buffer _buffer; // (Must persist between reads)
-    boost::beast::http::request<boost::beast::http::string_body> _req;
-    boost::beast::http::response<boost::beast::http::string_body> _res;
 };
 
 

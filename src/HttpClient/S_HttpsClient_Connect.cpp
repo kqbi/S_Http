@@ -16,6 +16,7 @@ void S_HttpsClient_Connect::resolve(std::string &host, std::string &port) {
         return;
     }
     // Look up the domain name
+
     _resolver.async_resolve(host,
                             port,
                             boost::beast::bind_front_handler(
@@ -23,8 +24,7 @@ void S_HttpsClient_Connect::resolve(std::string &host, std::string &port) {
                                     this));
 }
 
-void
-S_HttpsClient_Connect::on_resolve(boost::beast::error_code ec, boost::asio::ip::tcp::resolver::results_type results) {
+void S_HttpsClient_Connect::on_resolve(boost::beast::error_code ec, boost::asio::ip::tcp::resolver::results_type results) {
     if (ec)
         return fail(ec, "resolve");
 

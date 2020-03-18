@@ -13,19 +13,6 @@
 #include "S_HttpRes_Msg.h"
 //## package HttpClient
 
-//## class S_HttpClient_Connect
-S_HttpClient_Connect::S_HttpClient_Connect(void *pUser, READFROMSERVER readFromServer,
-                                           boost::asio::io_context &ioContext, S_HttpClient_Service &service) : _pUser(
-        pUser), _readFromServer(readFromServer), _resolver(boost::asio::make_strand(ioContext)), _service(service),
-                                                                                                                _stream(boost::asio::make_strand(
-                                                                                                                        ioContext)) {
-    //#[ operation S_HttpClient_Connect(void*,READFROMSERVER,boost::asio::io_context&,S_HttpClient_Service&)
-    //#]
-}
-
-S_HttpClient_Connect::~S_HttpClient_Connect() {
-}
-
 void S_HttpClient_Connect::fail(boost::beast::error_code ec, char const *what) {
     //#[ operation fail(beast::error_code,char const*)
 //    std::cerr << what << ": " << ec.message() << "\n";
