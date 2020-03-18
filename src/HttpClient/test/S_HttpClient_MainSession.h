@@ -38,7 +38,7 @@ public :
     void init();
     
     //## operation sendReqMsg(void*,READFROMSERVER,int&,std::string&,std::string&,std::string&,std::string,std::string,unsigned,bool,std::string)
-    void sendReqMsg(void* pUser, READFROMSERVER readFromServer, int& method, std::string& target, std::string& host, std::string& port, std::string contentType = "", std::string body = "", unsigned version = 11, bool keepAlive = true, std::string basicAuth = "");
+    void sendReqMsg(void* pUser, READFROMSERVER readFromServer, int& method, std::string& target, std::string& host, std::string& port, std::string contentType = "", std::string body = "", bool ssl = false, unsigned version = 11, bool keepAlive = true, std::string basicAuth = "");
     
     ////    Attributes    ////
 

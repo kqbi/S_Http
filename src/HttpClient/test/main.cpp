@@ -78,7 +78,7 @@ int main(int argc, char* argv[]) {
         std::string contentType = "";
         std::string body = "";
         std::string basicAuth = "admin:admin123";
-        mainSession->sendReqMsg(mainSession, readFromServer, method, target, host, port, contentType, body, version, keepAlive, basicAuth);
+        mainSession->sendReqMsg(mainSession, readFromServer, method, target, host, port, contentType, body, true, version, keepAlive, basicAuth);
         while (!finished)
         {
 #ifdef WIN32

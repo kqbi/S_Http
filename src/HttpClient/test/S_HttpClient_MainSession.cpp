@@ -59,9 +59,9 @@ void S_HttpClient_MainSession::init() {
     //#]
 }
 
-void S_HttpClient_MainSession::sendReqMsg(void* pUser, READFROMSERVER readFromServer, int& method, std::string& target, std::string& host, std::string& port, std::string contentType, std::string body, unsigned version, bool keepAlive, std::string basicAuth) {
+void S_HttpClient_MainSession::sendReqMsg(void* pUser, READFROMSERVER readFromServer, int& method, std::string& target, std::string& host, std::string& port, std::string contentType, std::string body, bool ssl, unsigned version, bool keepAlive, std::string basicAuth) {
     //#[ operation sendReqMsg(void*,READFROMSERVER,int&,std::string&,std::string&,std::string&,std::string,std::string,unsigned,bool,std::string)
-    S_HttpClient_SendReqMsg(pUser, readFromServer, method, target, host, port, contentType, body, false, version, keepAlive, basicAuth);
+    S_HttpClient_SendReqMsg(pUser, readFromServer, method, target, host, port, contentType, body, ssl, version, keepAlive, basicAuth);
     //#]
 }
 
