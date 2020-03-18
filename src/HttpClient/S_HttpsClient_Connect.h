@@ -18,7 +18,7 @@
 #include <memory>
 #include <string>
 
-class S_HttpsClient_Connect : public std::enable_shared_from_this<S_HttpsClient_Connect> {
+class S_HttpsClient_Connect {
 public:
     explicit
     S_HttpsClient_Connect(boost::asio::io_context &ioc, boost::asio::ssl::context &ctx)

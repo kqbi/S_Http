@@ -20,7 +20,7 @@ void S_HttpsClient_Connect::resolve(std::string &host, std::string &port) {
                             port,
                             boost::beast::bind_front_handler(
                                     &S_HttpsClient_Connect::on_resolve,
-                                    shared_from_this()));
+                                    this));
 }
 
 void
@@ -36,7 +36,7 @@ S_HttpsClient_Connect::on_resolve(boost::beast::error_code ec, boost::asio::ip::
             results,
             boost::beast::bind_front_handler(
                     &S_HttpsClient_Connect::on_connect,
-                    shared_from_this()));
+                    this));
 }
 
 void S_HttpsClient_Connect::on_connect(boost::beast::error_code ec,
@@ -49,7 +49,7 @@ void S_HttpsClient_Connect::on_connect(boost::beast::error_code ec,
             boost::asio::ssl::stream_base::client,
             boost::beast::bind_front_handler(
                     &S_HttpsClient_Connect::on_handshake,
-                    shared_from_this()));
+                    this));
 }
 
 void S_HttpsClient_Connect::on_handshake(boost::beast::error_code ec) {
@@ -63,7 +63,7 @@ void S_HttpsClient_Connect::on_handshake(boost::beast::error_code ec) {
     boost::beast::http::async_write(_stream, _req,
                                     boost::beast::bind_front_handler(
                                             &S_HttpsClient_Connect::on_write,
-                                            shared_from_this()));
+                                            this));
 }
 
 void S_HttpsClient_Connect::on_write(boost::beast::error_code ec, std::size_t bytes_transferred) {
@@ -76,7 +76,7 @@ void S_HttpsClient_Connect::on_write(boost::beast::error_code ec, std::size_t by
     boost::beast::http::async_read(_stream, _buffer, _res,
                                    boost::beast::bind_front_handler(
                                            &S_HttpsClient_Connect::on_read,
-                                           shared_from_this()));
+                                           this));
 }
 
 void S_HttpsClient_Connect::on_read(boost::beast::error_code ec, std::size_t bytes_transferred) {
@@ -95,7 +95,7 @@ void S_HttpsClient_Connect::on_read(boost::beast::error_code ec, std::size_t byt
     _stream.async_shutdown(
             boost::beast::bind_front_handler(
                     &S_HttpsClient_Connect::on_shutdown,
-                    shared_from_this()));
+                    this));
 }
 
 void S_HttpsClient_Connect::on_shutdown(boost::beast::error_code ec) {
