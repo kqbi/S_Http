@@ -407,10 +407,8 @@ void S_HttpServer_Connection::start() {
 
 void S_HttpServer_Connection::stop() {
     //#[ operation stop()
-    if (_stream.socket().is_open()) {
-        boost::beast::error_code ec;
-        _stream.socket().shutdown(boost::asio::ip::tcp::socket::shutdown_both, ec);
-    }
+    boost::beast::error_code ec;
+    _stream.socket().shutdown(boost::asio::ip::tcp::socket::shutdown_both, ec);
     //#]
 }
 
@@ -418,12 +416,12 @@ void S_HttpServer_Connection::handleRead(boost::beast::error_code e, size_t byte
     //#[ operation handleRead(beast::error_code,size_t)
     if (!e) {
         //handleRequest("", std::move(_req), send_lambda(*this));
-        boost::asio::post(*_service._ioContext, [&] {
+        boost::asio::post(_service._ioc, [&] {
             handleRequest("", std::move(_req), send_lambda(*this));
         });
     } else if (e == boost::beast::http::error::end_of_stream) {
         std::cout<<_connectionId << " read:" << e.message() << ":" << e << std::endl;
-        shutdown();
+        _connectManager.stop(shared_from_this());
     } else {
         std::cout<<_connectionId << " read:" << e.message() << ":" << e << std::endl;
     }
@@ -433,12 +431,12 @@ void S_HttpServer_Connection::handleRead(boost::beast::error_code e, size_t byte
 void S_HttpServer_Connection::handleWrite(boost::beast::error_code e, std::size_t bytes_transferred, bool close) {
     //#[ operation handleWrite(beast::error_code,std::size_t,bool)
     if (e)
-        return shutdown();
+        return stop();
 
     if (close) {
         // This means we should close the connection, usually because
         // the response indicated the "Connection: close" semantic.
-        return shutdown();
+        return _connectManager.stop(shared_from_this());
     }
 
     // Read another request

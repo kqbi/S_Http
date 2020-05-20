@@ -64,8 +64,6 @@ public :
 
 public :
 
-  io_context_weak_ptr _processTp;
-
     ////    Relations and components    ////
 
 protected :

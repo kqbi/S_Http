@@ -37,16 +37,18 @@ void S_HttpServer_ConnectionManager::stop(connection_ptr connection) {
     //#[ operation stop(connection_ptr)
     std::lock_guard<std::mutex> lock(_mutex);
     _connections.erase(connection->_connectionId);
+    connection->closeSocket();
     //#]
 }
 
 void S_HttpServer_ConnectionManager::stopAll() {
     //#[ operation stopAll()
+    printf("stopAll\n");
     std::lock_guard<std::mutex> lock(_mutex);
-    std::unordered_map<std::string, connection_ptr>::iterator it = _connections.begin();
-    for (;it != _connections.end(); ++it)
-        if ((*it).second)
-            (*it).second->stop();
+    for (auto c : _connections) {
+        if (c.second)
+            c.second->closeSocket();
+    }
     _connections.clear();
     //#]
 }

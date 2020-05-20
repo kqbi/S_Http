@@ -24,15 +24,8 @@ class S_Http_Msg;
 //## class S_HttpServer_Service
 class S_HttpServer_Service {
 public :
-    typedef std::shared_ptr<boost::asio::io_context> io_context_ptr;
 
     typedef std::shared_ptr<S_HttpServer_Connection> connection_ptr;
-
-    typedef boost::asio::executor_work_guard<boost::asio::io_context::executor_type> io_context_work;
-
-    typedef std::shared_ptr<boost::asio::executor_work_guard<boost::asio::io_context::executor_type>> io_context_work_ptr;
-
-    typedef std::shared_ptr<boost::asio::ip::tcp::acceptor> io_accept_ptr;
 
     using ReqHandler = std::function<void (S_HttpReq_Msg *msg)>;
 
@@ -41,14 +34,12 @@ public :
     ////    Constructors and destructors    ////
     
     //## operation S_HttpServer_Service(const std::string&,unsigned short&,const std::string&,std::size_t)
-    S_HttpServer_Service();
+    S_HttpServer_Service(boost::asio::io_context &ioc);
     
     //## operation ~S_HttpServer_Service()
     ~S_HttpServer_Service();
     
     ////    Operations    ////
-
-    static S_HttpServer_Service* Instance();
 
     //## operation execProcessMsg(S_Http_Msg*)
     void execProcessMsg(S_Http_Msg* msg);
@@ -68,9 +59,6 @@ public :
     //## operation listen()
     bool listen(std::string &ipAddress, unsigned short port);
     
-    //## operation run()
-    void run();
-    
     //## operation sendResMsg(std::string&,http::status,unsigned,std::string&)
     void sendResMsg(std::string& connectionId, boost::beast::http::status status, unsigned version, std::string& body);
     
@@ -85,22 +73,16 @@ public :
 
     ////    Attributes    ////
 
-    io_context_ptr _ioContext;		//## attribute _ioContext
+    boost::asio::io_context &_ioc;
 
-    io_context_work_ptr _work;		//## attribute _work
-
-    io_accept_ptr _acceptor;		//## attribute _acceptor
+    boost::asio::ip::tcp::acceptor _acceptor;		//## attribute _acceptor
     
     std::string _ipAddress;		//## attribute _ipAddress
     
     unsigned short _port;		//## attribute _port
     
     S_HttpServer_ConnectionManager _connectionManager;		//## attribute _connectionManager
-    
-    boost::thread_group _threads;		//## attribute _threads
-    
-    std::size_t _ioContextPoolSize;		//## attribute _ioContextPoolSize
-    
+
     void* _pUser;		//## attribute _pUser
 
     std::unordered_map<std::string, ReqHandler> _handlerMap;

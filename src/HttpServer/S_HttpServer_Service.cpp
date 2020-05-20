@@ -23,23 +23,14 @@
 #include <uuid/uuid.h>
 #endif
 
-S_HttpServer_Service::S_HttpServer_Service() : _ipAddress(""), _port(0), _pUser(0) {
+S_HttpServer_Service::S_HttpServer_Service(boost::asio::io_context &ioc) : _ioc(ioc), _acceptor(ioc), _ipAddress(""), _port(0), _pUser(0) {
     //#[ operation S_HttpServer_Service(const std::string&,unsigned short&,const std::string&,std::size_t)
-    _ioContextPoolSize = 2 * boost::thread::hardware_concurrency();
-    _ioContext = std::make_shared<boost::asio::io_context>();
-    _work = std::make_shared<io_context_work>(boost::asio::make_work_guard(*_ioContext));
-    _acceptor = std::make_shared<boost::asio::ip::tcp::acceptor>(boost::asio::make_strand(*_ioContext));
     //#]
 }
 
 S_HttpServer_Service::~S_HttpServer_Service() {
     //#[ operation ~S_HttpServer_Service()
     //#]
-}
-
-S_HttpServer_Service *S_HttpServer_Service::Instance() {
-    static S_HttpServer_Service service;
-    return &service;
 }
 
 void S_HttpServer_Service::getConnectionInfo(std::string &connectionId, std::string &ipAddress, unsigned short &port) {
@@ -70,7 +61,7 @@ std::string S_HttpServer_Service::getNewConnectionId() {
 
 void S_HttpServer_Service::handleAccept(boost::beast::error_code e, boost::asio::ip::tcp::socket socket) {
     //#[ operation handleAccept(beast::error_code,tcp::socket)
-    if (!_acceptor->is_open())
+    if (!_acceptor.is_open())
         return;
 
     if (!e) {
@@ -99,8 +90,6 @@ void S_HttpServer_Service::handleAccept(boost::beast::error_code e, boost::asio:
 void S_HttpServer_Service::handleStop() {
     //#[ operation handleStop()
     _connectionManager.stopAll();
-    _ioContext->stop();
-    _threads.join_all();
     //#]
 }
 
@@ -117,25 +106,16 @@ bool S_HttpServer_Service::listen(std::string &ipAddress, unsigned short port) {
         endpoint = boost::asio::ip::tcp::endpoint(addr, _port);
     }
     try {
-        _acceptor->open(endpoint.protocol());
+        _acceptor.open(endpoint.protocol());
         boost::asio::socket_base::reuse_address option(true);
-        _acceptor->set_option(option);
-        _acceptor->bind(endpoint);
-        _acceptor->listen();
+        _acceptor.set_option(option);
+        _acceptor.bind(endpoint);
+        _acceptor.listen();
     } catch (std::exception &e) {
         return false;
     }
     startAccept();
-    run();
     return true;
-    //#]
-}
-
-void S_HttpServer_Service::run() {
-    //#[ operation run()
-    for (std::size_t i = 0; i < _ioContextPoolSize; ++i) {
-        _threads.create_thread(boost::bind(&boost::asio::io_context::run, _ioContext));
-    }
     //#]
 }
 
@@ -151,7 +131,7 @@ void S_HttpServer_Service::sendResMsg(std::string &connectionId, boost::beast::h
 
 void S_HttpServer_Service::startAccept() {
     //#[ operation startAccept()
-    _acceptor->async_accept(boost::asio::make_strand(*_ioContext),
+    _acceptor.async_accept(boost::asio::make_strand(_ioc),
                             boost::beast::bind_front_handler(
                                     &S_HttpServer_Service::handleAccept,
                                     this));

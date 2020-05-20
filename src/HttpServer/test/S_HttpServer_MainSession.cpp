@@ -22,6 +22,7 @@
 void readFromServer(void *pUser, S_Http_Msg *msg) {
     printf("msg:::::::::::::::\n");
     S_HttpServer_MainSession *mainSession = (S_HttpServer_MainSession *) pUser;
+#if 0
     auto stronglf = mainSession->_processTp.lock();
     if (stronglf) {
         boost::asio::post(*stronglf,
@@ -32,6 +33,7 @@ void readFromServer(void *pUser, S_Http_Msg *msg) {
         delete msg;
         msg = 0;
     }
+#endif
 }
 
 S_HttpServer_MainSession::S_HttpServer_MainSession() {
@@ -70,18 +72,20 @@ std::string S_HttpServer_MainSession::getNewConnectionId() {
 
 void S_HttpServer_MainSession::init() {
     //#[ operation init()
-    S_HttpServer_InitMoudle();
+//    S_HttpServer_InitMoudle();
     //#]
 }
 
 bool S_HttpServer_MainSession::listen(unsigned short port) {
     //#[ operation listen(unsigned short)
     std::string ipAddress = "";
+#if 0
     bool ret = S_HttpServer_Listen(ipAddress, port);
     if (ret) {
         S_HttpServer_GetIOContext(_processTp);
     }
-    return ret;
+#endif
+    return true;
     //#]
 }
 
@@ -89,7 +93,7 @@ void
 S_HttpServer_MainSession::sendResMsg(std::string &connectionId, boost::beast::http::status status, unsigned version,
                                      std::string &body) {
     //#[ operation sendResMsg(std::string&,http::status,unsigned,std::string&)
-    S_HttpServer_SendResMsg(connectionId, (int) status, body, version);
+   // S_HttpServer_SendResMsg(connectionId, (int) status, body, version);
     //#]
 }
 
@@ -119,7 +123,7 @@ void S_HttpServer_MainSession::clearSession() {
 
 void S_HttpServer_MainSession::stop() {
     clearSession();
-    S_HttpServer_StopMoudle();
+   // S_HttpServer_StopMoudle();
 }
 
 /*********************************************************************
