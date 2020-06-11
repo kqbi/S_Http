@@ -25,15 +25,15 @@ void readFromServer(void* pUser, S_Http_Msg* msg) {
  std::cout <<"mm:" <<  ((S_HttpRes_Msg*)msg)->_body << std::endl;
     printf("msg:::::::::::::::\n");
     S_HttpClient_MainSession *mainSession = (S_HttpClient_MainSession *) pUser;
-    auto stronglf = mainSession->_processTp.lock();
-    if (stronglf) {
-        boost::asio::post(*stronglf,[&](){
-            mainSession->execProcessMsg(msg);
-        });
-    } else {
-        delete msg;
-        msg = 0;
-    }
+//    auto stronglf = mainSession->_processTp.lock();
+//    if (stronglf) {
+//        boost::asio::post(*stronglf,[&](){
+//            mainSession->execProcessMsg(msg);
+//        });
+//    } else {
+//        delete msg;
+//        msg = 0;
+//    }
 }
 
 int main(int argc, char* argv[]) {
