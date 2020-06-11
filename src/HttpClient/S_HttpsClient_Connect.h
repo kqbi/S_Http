@@ -22,8 +22,8 @@
 class S_HttpsClient_Connect : public S_HttpClient_ConnectBase {
 public:
     explicit
-    S_HttpsClient_Connect(boost::asio::io_context &ioc, boost::asio::ssl::context &ctx)
-            : S_HttpClient_ConnectBase(ioc), _stream(boost::asio::make_strand(ioc), ctx) {
+    S_HttpsClient_Connect(boost::asio::io_context &ioc, boost::asio::ssl::context &ctx, S_HttpClient_ConnectionManager &connectionManager)
+            : S_HttpClient_ConnectBase(ioc, connectionManager), _stream(boost::asio::make_strand(ioc), ctx) {
     }
 
     void resolve(std::string &host, std::string &port);
@@ -39,6 +39,10 @@ public:
     void on_read(boost::beast::error_code ec, std::size_t bytes_transferred);
 
     void on_shutdown(boost::beast::error_code ec);
+
+    void fail(boost::beast::error_code ec, char const *what);
+
+    void close();
 
     boost::beast::ssl_stream<boost::beast::tcp_stream> _stream;
 };

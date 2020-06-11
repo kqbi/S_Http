@@ -8,11 +8,11 @@
 #include <string>
 #include <boost/utility/string_view.hpp>
 
-std::string base64_encode(std::uint8_t const *data, std::size_t len);
+std::string base64Encode(std::uint8_t const *data, std::size_t len);
 
-std::string base64_encode(boost::string_view s);
+std::string base64Encode(boost::string_view s);
 
-std::string base64_decode(boost::string_view data);
+std::string base64Eecode(boost::string_view data);
 
 std::string urldecode(std::string &str_source);
 

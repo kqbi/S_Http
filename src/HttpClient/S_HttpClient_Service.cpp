@@ -20,20 +20,12 @@
 //## package HttpClient
 
 //## class S_HttpClient_Service
-S_HttpClient_Service::S_HttpClient_Service() : _pUser(0), _readFromServer(0) {
+S_HttpClient_Service::S_HttpClient_Service(boost::asio::io_context &ioc) : _ioc(ioc), _pUser(0), _readFromServer(0){
     //#[ operation S_HttpClient_Service(std::size_t)
-    _ioContext = std::make_shared<boost::asio::io_context>();
-    _work = std::make_shared<io_context_work>(boost::asio::make_work_guard(*_ioContext));
-    _ioContextPoolSize = 2 * boost::thread::hardware_concurrency();
     //#]
 }
 
 S_HttpClient_Service::~S_HttpClient_Service() {
-}
-
-S_HttpClient_Service *S_HttpClient_Service::Instance() {
-    static S_HttpClient_Service service;
-    return &service;
 }
 
 void S_HttpClient_Service::execProcessMsg(S_Http_Msg *msg) {
@@ -47,6 +39,7 @@ void S_HttpClient_Service::execProcessMsg(S_Http_Msg *msg) {
 
 void S_HttpClient_Service::handleStop() {
     //#[ operation handleStop()
+    _connectionManager.stopAll();
     //#]
 }
 
@@ -57,19 +50,11 @@ void S_HttpClient_Service::readFromServer(void *pUser, READFROMSERVER readFromSe
     //#]
 }
 
-void S_HttpClient_Service::run() {
-    //#[ operation run()
-    for (std::size_t i = 0; i < _ioContextPoolSize; ++i) {
-        _threads.create_thread(boost::bind(&boost::asio::io_context::run, _ioContext));
-    }
-    //#]
-}
-
 void S_HttpClient_Service::sendReqMsg(void *pUser, READFROMSERVER readFromServer, int &method, std::string &target,
                                       unsigned version, bool keepAlive, std::string &host, std::string &port,
                                       std::string &contentType, std::string &body, std::string &basicAuth, bool ssl) {
     //#[ operation sendReqMsg(void*,READFROMSERVER,int&,std::string&,unsigned,bool,std::string&,std::string&,std::string&,std::string&,std::string&)
-    S_HttpClient_ConnectBase* connect = 0;
+    std::shared_ptr<S_HttpClient_ConnectBase> connect = 0;
     if (ssl) {
         boost::asio::ssl::context ctx{boost::asio::ssl::context::tlsv12_client};
         // This holds the root certificate used for verification
@@ -77,11 +62,11 @@ void S_HttpClient_Service::sendReqMsg(void *pUser, READFROMSERVER readFromServer
         // Verify the remote server's certificate
         // ctx.set_verify_mode(boost::asio::ssl::verify_peer);
         ctx.set_verify_mode(boost::asio::ssl::verify_none);
-        connect = new S_HttpsClient_Connect(*_ioContext, ctx);
+        connect = std::dynamic_pointer_cast<S_HttpClient_ConnectBase>(std::make_shared<S_HttpsClient_Connect>(_ioc, ctx, _connectionManager));
     } else {
-        connect = new S_HttpClient_Connect(pUser, readFromServer, *_ioContext, *this);
+        connect = std::dynamic_pointer_cast<S_HttpClient_ConnectBase>(std::make_shared<S_HttpClient_Connect>(pUser, readFromServer, _ioc, _connectionManager));
     }
-
+    _connectionManager.join(connect);
     connect->_req.version(version);
     connect->_req.method((boost::beast::http::verb) method);
     connect->_req.target(target);
@@ -91,7 +76,7 @@ void S_HttpClient_Service::sendReqMsg(void *pUser, READFROMSERVER readFromServer
     if (!contentType.empty())
         connect->_req.set(boost::beast::http::field::content_type, contentType);
 
-    std::string base64string = base64_encode(basicAuth);
+    std::string base64string = base64Encode(basicAuth);
 
     std::string authorization = "Basic " + base64string;
     if (!basicAuth.empty())
@@ -118,19 +103,19 @@ void S_HttpClient_Service::sendReqMsg(void *pUser, READFROMSERVER readFromServer
     //#]
 }
 
-std::string S_HttpClient_Service::base64_encode(std::uint8_t const *data, std::size_t len) {
+std::string S_HttpClient_Service::base64Encode(std::uint8_t const *data, std::size_t len) {
     std::string dest;
     dest.resize(boost::beast::detail::base64::encoded_size(len));
     dest.resize(boost::beast::detail::base64::encode(&dest[0], data, len));
     return dest;
 }
 
-std::string S_HttpClient_Service::base64_encode(boost::string_view s) {
-    return base64_encode(reinterpret_cast <
+std::string S_HttpClient_Service::base64Encode(boost::string_view s) {
+    return base64Encode(reinterpret_cast <
                                  std::uint8_t const *> (s.data()), s.size());
 }
 
-std::string S_HttpClient_Service::base64_decode(boost::string_view data) {
+std::string S_HttpClient_Service::base64Decode(boost::string_view data) {
     std::string dest;
     dest.resize(boost::beast::detail::base64::decoded_size(data.size()));
     auto const result = boost::beast::detail::base64::decode(

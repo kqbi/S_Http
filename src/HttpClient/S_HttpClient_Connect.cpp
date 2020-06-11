@@ -15,7 +15,9 @@
 
 void S_HttpClient_Connect::fail(boost::beast::error_code ec, char const *what) {
     //#[ operation fail(beast::error_code,char const*)
-//    std::cerr << what << ": " << ec.message() << "\n";
+    //std::cerr << what << ": " << ec.message() << "\n";
+    if (ec != boost::asio::error::operation_aborted)
+        _connectionManager.stop(std::dynamic_pointer_cast<S_HttpClient_ConnectBase>(shared_from_this()));
     //#]
 }
 
@@ -32,7 +34,7 @@ void S_HttpClient_Connect::onConnect(boost::beast::error_code ec,
     boost::beast::http::async_write(_stream, _req,
                                     boost::beast::bind_front_handler(
                                             &S_HttpClient_Connect::onWrite,
-                                            this));
+                                            std::dynamic_pointer_cast<S_HttpClient_Connect>(shared_from_this())));
     //#]
 }
 
@@ -67,9 +69,23 @@ void S_HttpClient_Connect::onRead(boost::beast::error_code ec, std::size_t bytes
     //std::cout << ec.message() << std::endl;
     // not_connected happens sometimes so don't bother reporting it.
     if (ec && ec != boost::beast::errc::not_connected)
-        fail(ec, "shutdown");
-    delete this;
+        return fail(ec, "shutdown");
+    _connectionManager.stop(std::dynamic_pointer_cast<S_HttpClient_ConnectBase>(shared_from_this()));
     // If we get here then the connection is closed gracefully
+    //#]
+}
+
+void S_HttpClient_Connect::stop() {
+    //#[ operation stop()
+    boost::beast::error_code ec;
+    _stream.socket().shutdown(boost::asio::ip::tcp::socket::shutdown_both, ec);
+    //#]
+}
+
+void S_HttpClient_Connect::close() {
+    //#[ operation stop()
+    boost::system::error_code ec;
+    _stream.socket().close(ec);
     //#]
 }
 
@@ -87,7 +103,7 @@ S_HttpClient_Connect::onResolve(boost::beast::error_code ec, boost::asio::ip::tc
             results,
             boost::beast::bind_front_handler(
                     &S_HttpClient_Connect::onConnect,
-                    this));
+                    std::dynamic_pointer_cast<S_HttpClient_Connect>(shared_from_this())));
     //#]
 }
 
@@ -102,7 +118,7 @@ void S_HttpClient_Connect::onWrite(boost::beast::error_code ec, std::size_t byte
     boost::beast::http::async_read(_stream, _buffer, _res,
                                    boost::beast::bind_front_handler(
                                            &S_HttpClient_Connect::onRead,
-                                           this));
+                                           std::dynamic_pointer_cast<S_HttpClient_Connect>(shared_from_this())));
     //#]
 }
 
@@ -113,7 +129,7 @@ void S_HttpClient_Connect::resolve(std::string &host, std::string &port) {
             port,
             boost::beast::bind_front_handler(
                     &S_HttpClient_Connect::onResolve,
-                    this));
+                    std::dynamic_pointer_cast<S_HttpClient_Connect>(shared_from_this())));
     //#]
 }
 

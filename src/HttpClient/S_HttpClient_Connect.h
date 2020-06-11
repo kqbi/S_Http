@@ -27,10 +27,10 @@ public :
 
     //## operation S_HttpClient_Connect(void*,READFROMSERVER,boost::asio::io_context&,S_HttpClient_Service&)
     S_HttpClient_Connect(void *pUser, READFROMSERVER readFromServer, boost::asio::io_context &ioc,
-                         S_HttpClient_Service &service) : S_HttpClient_ConnectBase(ioc), _pUser(
-            pUser), _readFromServer(readFromServer), _service(service), _stream(boost::asio::make_strand(ioc)) {};
+                         S_HttpClient_ConnectionManager &connectionManager) : S_HttpClient_ConnectBase(ioc, connectionManager), _pUser(
+            pUser), _readFromServer(readFromServer), _stream(boost::asio::make_strand(ioc)) {};
 
-    ~S_HttpClient_Connect() {};
+    ~S_HttpClient_Connect() {close();};
 
     ////    Operations    ////
 
@@ -38,8 +38,7 @@ public :
     void fail(boost::beast::error_code ec, char const *what);
 
     //## operation onConnect(beast::error_code,tcp::resolver::results_type::endpoint_type)
-    void
-    onConnect(boost::beast::error_code ec, boost::asio::ip::tcp::resolver::results_type::endpoint_type endpointType);
+    void onConnect(boost::beast::error_code ec, boost::asio::ip::tcp::resolver::results_type::endpoint_type endpointType);
 
     //## operation onRead(beast::error_code,std::size_t)
     void onRead(boost::beast::error_code ec, std::size_t bytesTransferred);
@@ -53,6 +52,10 @@ public :
     //## operation resolve(std::string&,std::string&)
     void resolve(std::string &host, std::string &port);
 
+    void stop();
+
+    void close();
+
     //## operation sendReqMsg()
     void sendReqMsg();
 
@@ -61,8 +64,6 @@ public :
     void *_pUser;        //## attribute _pUser
 
     READFROMSERVER _readFromServer;        //## attribute _readFromServer
-
-    S_HttpClient_Service &_service;        //## attribute _service
 
     boost::beast::tcp_stream _stream;        //## attribute _stream
 };

@@ -7,8 +7,9 @@ aux_source_directory(../src/HttpMsg MSG_DIR)
 aux_source_directory(../src/HttpClient CLIENT_DIR)
 aux_source_directory(../src/Utils UTILS_DIR)
 
-ADD_DEFINITIONS("-DBOOST_IOCONTEXT")
-ADD_DEFINITIONS("-DS_HTTP_CLIENT_USE_STATIC_LIB")
+if (WIN32)
+   ADD_DEFINITIONS("-DS_HTTP_CLIENT_USE_STATIC_LIB")
+endif (WIN32)
 
 #静态库
 add_library(${CMAKE_PROJECT_NAME}Client_static STATIC ${MSG_DIR} ${CLIENT_DIR} ${UTILS_DIR})

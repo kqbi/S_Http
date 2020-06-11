@@ -13,9 +13,12 @@
 
 #include <boost/beast.hpp>
 #include <boost/thread.hpp>
+#include <S_HttpClient_ConnectionManager.h>
 class S_HttpClient_Connect;
 
 class S_Http_Msg;
+
+class S_HttpClient_ConnectBase;
 
 //## package HttpClient
 
@@ -23,23 +26,15 @@ class S_Http_Msg;
 class S_HttpClient_Service {
 public :
 
-    typedef std::shared_ptr<boost::asio::io_context> io_context_ptr;
-
-    typedef boost::asio::executor_work_guard<boost::asio::io_context::executor_type> io_context_work;
-
-    typedef std::shared_ptr<boost::asio::executor_work_guard<boost::asio::io_context::executor_type>> io_context_work_ptr;
-
     typedef void (*READFROMSERVER)(void *pUser, S_Http_Msg *msg);
     ////    Constructors and destructors    ////
 
     //## operation S_HttpClient_Service(std::size_t)
-    S_HttpClient_Service();
+    S_HttpClient_Service(boost::asio::io_context &ioc);
 
     ~S_HttpClient_Service();
 
     ////    Operations    ////
-
-    static S_HttpClient_Service *Instance();
 
     //## operation execProcessMsg(S_Http_Msg*)
     void execProcessMsg(S_Http_Msg *msg);
@@ -47,31 +42,23 @@ public :
     //## operation handleStop()
     void handleStop();
 
-    //## operation join()
-    void join();
-
     //## operation readFromServer(void*,READFROMSERVER)
     void readFromServer(void *pUser, READFROMSERVER readFromServer);
-
-    //## operation run()
-    void run();
 
     //## operation sendReqMsg(void*,READFROMSERVER,int&,std::string&,unsigned,bool,std::string&,std::string&,std::string&,std::string&,std::string&)
     void sendReqMsg(void *pUser, READFROMSERVER readFromServer, int &method, std::string &target, unsigned version,
                     bool keepAlive, std::string &host, std::string &port, std::string &contentType, std::string &body,
                     std::string &basicAuth, bool ssl);
 
-    std::string base64_encode(std::uint8_t const *data, std::size_t len);
+    std::string base64Encode(std::uint8_t const *data, std::size_t len);
 
-    std::string base64_encode(boost::string_view s);
+    std::string base64Encode(boost::string_view s);
 
-    std::string base64_decode(boost::string_view data);
+    std::string base64Decode(boost::string_view data);
 
     ////    Attributes    ////
 
-    io_context_ptr _ioContext;        //## attribute _ioContext
-
-    std::size_t _ioContextPoolSize;        //## attribute _ioContextPoolSize
+    boost::asio::io_context &_ioc;        //## attribute _ioContext
 
     void *_pUser;        //## attribute _pUser
 
@@ -79,9 +66,7 @@ public :
 
     boost::beast::http::response<boost::beast::http::string_body> _res;        //## attribute _res
 
-    boost::thread_group _threads;        //## attribute _threads
-
-    io_context_work_ptr _work;        //## attribute _work
+    S_HttpClient_ConnectionManager _connectionManager;
 };
 
 #endif

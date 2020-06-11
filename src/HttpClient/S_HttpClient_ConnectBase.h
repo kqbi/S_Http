@@ -18,18 +18,23 @@
 #include <memory>
 #include <string>
 
-class S_HttpClient_ConnectBase {
+class S_HttpClient_ConnectionManager;
+
+class S_HttpClient_ConnectBase : public std::enable_shared_from_this<S_HttpClient_ConnectBase>{
 public:
-    S_HttpClient_ConnectBase(boost::asio::io_context &ioc):_resolver(boost::asio::make_strand(ioc)){};
+    S_HttpClient_ConnectBase(boost::asio::io_context &ioc, S_HttpClient_ConnectionManager &connectionManager):_resolver(boost::asio::make_strand(ioc)), _connectionManager(connectionManager){};
 
     virtual ~S_HttpClient_ConnectBase(){};
 
     virtual void resolve(std::string &host, std::string &port) = 0;
 
+    virtual void close() = 0;
+
     boost::asio::ip::tcp::resolver _resolver;
     boost::beast::flat_buffer _buffer; // (Must persist between reads)
     boost::beast::http::request<boost::beast::http::string_body> _req;
     boost::beast::http::response<boost::beast::http::string_body> _res;
+    S_HttpClient_ConnectionManager &_connectionManager;
 };
 
 

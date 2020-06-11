@@ -83,7 +83,8 @@ void S_HttpServer_Service::handleAccept(boost::beast::error_code e, boost::asio:
                 remoteIpAddress,
                 port)->start();
     }
-    startAccept();
+    if (e != boost::asio::error::operation_aborted)
+        startAccept();
     //#]
 }
 

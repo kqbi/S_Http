@@ -5,30 +5,24 @@
 extern "C" {
 #endif
 
-bool S_HTTP_CLIENT_CALL S_HttpClient_InitMoudle(LogFnCallback callback) {
-    return true;
+http_client S_HTTP_CLIENT_CALL S_HttpClient_Create(boost::asio::io_context &ioc) {
+    S_HttpClient_Service* service = new S_HttpClient_Service(ioc);
+    return (http_client)service;
 }
 
-void S_HTTP_CLIENT_CALL S_HttpClient_StopMoudle() {
-    S_HttpClient_Service::Instance()->handleStop();
+void S_HTTP_CLIENT_CALL S_HttpClient_Release(http_client ctx) {
+    assert(ctx);
+    ((S_HttpClient_Service*)ctx)->handleStop();
+    delete (S_HttpClient_Service*)ctx;
 }
 
-void S_HTTP_CLIENT_CALL S_HttpClient_Run() {
-    S_HttpClient_Service::Instance()->run();
-}
-
-void S_HTTP_CLIENT_CALL S_HttpClient_SendReqMsg(void *pUser, READFROMSERVER readFromServer, int &method, std::string &target,
+void S_HTTP_CLIENT_CALL S_HttpClient_SendReqMsg(http_client ctx, void *pUser, READFROMSERVER readFromServer, int &method, std::string &target,
                                       std::string &host, std::string &port, std::string contentType, std::string body, bool ssl,
                                       unsigned version, bool keepAlive, std::string basicAuth) {
-    S_HttpClient_Service::Instance()->sendReqMsg(pUser, readFromServer, method, target, version, keepAlive, host, port,
+    assert(ctx);
+    ((S_HttpClient_Service*)ctx)->sendReqMsg(pUser, readFromServer, method, target, version, keepAlive, host, port,
                                                  contentType, body, basicAuth, ssl);
 }
-
-#ifdef BOOST_IOCONTEXT
-void  S_HTTP_CLIENT_CALL S_HttpClient_GetIOContext(io_context_weak_ptr  &ioContext) {
-        ioContext = S_HttpClient_Service::Instance()->_ioContext;
-}
-#endif
 
 #ifdef __cplusplus
 }

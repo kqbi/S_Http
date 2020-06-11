@@ -2,12 +2,7 @@
 #define SHTTPCLIENTSERVICESDK_H
 
 #include "S_Http_Msg.h"
-
-#ifdef BOOST_IOCONTEXT
 #include <boost/asio/io_context.hpp>
-#include <boost/shared_ptr.hpp>
-#include <memory>
-#endif
 
 #if defined( _WIN32 ) || defined( __MINGW32__ )
 #   if defined( S_HTTP_CLIENT_EXPORTS )
@@ -28,29 +23,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+typedef void *http_client;
 
-#ifdef BOOST_IOCONTEXT
-typedef std::shared_ptr<boost::asio::io_context> io_context_ptr;
-typedef std::weak_ptr<boost::asio::io_context> io_context_weak_ptr;
-#endif
+S_HTTP_CLIENT_EXPORT http_client S_HTTP_CLIENT_CALL S_HttpClient_Create(boost::asio::io_context &ioc);
 
-typedef void (*LogFnCallback)(std::string &msg);
-
-S_HTTP_CLIENT_EXPORT bool S_HTTP_CLIENT_CALL S_HttpClient_InitMoudle(LogFnCallback callback = 0);
-
-S_HTTP_CLIENT_EXPORT void S_HTTP_CLIENT_CALL S_HttpClient_StopMoudle();
-
-S_HTTP_CLIENT_EXPORT void S_HTTP_CLIENT_CALL S_HttpClient_Run();
+S_HTTP_CLIENT_EXPORT void S_HTTP_CLIENT_CALL S_HttpClient_Release(http_client ctx);
 
 typedef void (*READFROMSERVER)(void *pUser, S_Http_Msg *msg);
 S_HTTP_CLIENT_EXPORT void S_HTTP_CLIENT_CALL
-S_HttpClient_SendReqMsg(void *pUser, READFROMSERVER readFromServer, int &method, std::string &target, std::string &host,
+S_HttpClient_SendReqMsg(http_client ctx, void *pUser, READFROMSERVER readFromServer, int &method, std::string &target, std::string &host,
                         std::string &port, std::string contentType = "", std::string body = "", bool ssl = false, unsigned version = 11,
                         bool keepAlive = true, std::string basicAuth = "");
-
-#ifdef BOOST_IOCONTEXT
-S_HTTP_CLIENT_EXPORT void  S_HTTP_CLIENT_CALL S_HttpClient_GetIOContext(io_context_weak_ptr  &ioContext);
-#endif
 
 #ifdef __cplusplus
 }
