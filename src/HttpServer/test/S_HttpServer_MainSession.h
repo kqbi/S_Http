@@ -72,6 +72,7 @@ protected :
 
     std::mutex _mutex;
 
+    http_server _httpServer;
 };
 
 #endif

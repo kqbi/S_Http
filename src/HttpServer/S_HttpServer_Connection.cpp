@@ -136,6 +136,9 @@ void S_HttpServer_Connection::handleRequest(boost::beast::string_view docRoot,
         std::string urlString = urldecode(url);
         boost::beast::error_code ec;
         boost::beast::http::file_body::value_type body;
+        if (_service._filePaths.empty())
+            return send(not_found(req.target()));
+        
         for (auto it : _service._filePaths) {
             body.open((it + urlString).c_str(), boost::beast::file_mode::scan, ec);
             if (!ec)
@@ -420,10 +423,10 @@ void S_HttpServer_Connection::handleRead(boost::beast::error_code e, size_t byte
             handleRequest("", std::move(_req), send_lambda(*this));
         });
     } else if (e == boost::beast::http::error::end_of_stream) {
-        std::cout<<_connectionId << " read:" << e.message() << ":" << e << std::endl;
+        std::cout << _connectionId << " read:" << e.message() << ":" << e << std::endl;
         _connectManager.stop(shared_from_this());
     } else {
-        std::cout<<_connectionId << " read:" << e.message() << ":" << e << std::endl;
+        std::cout << _connectionId << " read:" << e.message() << ":" << e << std::endl;
     }
     //#]
 }

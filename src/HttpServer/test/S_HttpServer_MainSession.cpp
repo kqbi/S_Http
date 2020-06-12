@@ -72,7 +72,7 @@ std::string S_HttpServer_MainSession::getNewConnectionId() {
 
 void S_HttpServer_MainSession::init() {
     //#[ operation init()
-//    S_HttpServer_InitMoudle();
+    //_httpServer = S_HttpServer_Create();
     //#]
 }
 
