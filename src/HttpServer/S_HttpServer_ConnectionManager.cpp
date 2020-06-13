@@ -43,7 +43,6 @@ void S_HttpServer_ConnectionManager::stop(connection_ptr connection) {
 
 void S_HttpServer_ConnectionManager::stopAll() {
     //#[ operation stopAll()
-    printf("stopAll\n");
     std::lock_guard<std::mutex> lock(_mutex);
     for (auto c : _connections) {
         if (c.second)

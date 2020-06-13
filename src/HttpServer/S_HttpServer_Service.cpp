@@ -90,6 +90,8 @@ void S_HttpServer_Service::handleAccept(boost::beast::error_code e, boost::asio:
 
 void S_HttpServer_Service::handleStop() {
     //#[ operation handleStop()
+    boost::system::error_code ec;
+    _acceptor.close(ec);
     _connectionManager.stopAll();
     //#]
 }
