@@ -21,7 +21,7 @@ S_HttpServer_Connection::S_HttpServer_Connection(std::string &connectionId, S_Ht
                                                  boost::asio::ip::tcp::socket &&socket,
                                                  S_HttpServer_ConnectionManager &connectionManager,
                                                  std::string &remoteIpAddress, unsigned short &port) : _stream(
-        std::move(socket)), _lambda(*this), _connectManager(connectionManager), _connectionId(connectionId),
+        std::move(socket)), _connectManager(connectionManager), _connectionId(connectionId),
                                                                                                        _remoteIpAddress(
                                                                                                                remoteIpAddress),
                                                                                                        _port(port),
@@ -387,7 +387,8 @@ void S_HttpServer_Connection::sendResMsg(boost::beast::http::status status, unsi
 
     res.body() = body;
     res.prepare_payload();
-    _lambda(std::move(res));
+    send_lambda send(shared_from_this())/*()*/;
+    send(std::move(res));
     //#]
 }
 
@@ -400,6 +401,7 @@ void S_HttpServer_Connection::shutdown() {
 
 void S_HttpServer_Connection::start() {
     //#[ operation start()
+    //_lambda(shared_from_this());
     _connectManager.join(shared_from_this());
     boost::asio::dispatch(_stream.get_executor(),
                           boost::beast::bind_front_handler(
@@ -420,7 +422,7 @@ void S_HttpServer_Connection::handleRead(boost::beast::error_code e, size_t byte
     if (!e) {
         //handleRequest("", std::move(_req), send_lambda(*this));
         boost::asio::post(_service._ioc, [&] {
-            handleRequest("", std::move(_req), send_lambda(*this));
+            handleRequest("", std::move(_req), send_lambda(shared_from_this()));
         });
     } else if (e == boost::beast::http::error::end_of_stream) {
         std::cout << _connectionId << " read:" << e.message() << ":" << e << std::endl;

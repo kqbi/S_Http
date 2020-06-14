@@ -30,10 +30,10 @@ public :
     typedef std::shared_ptr<S_HttpServer_Connection> connection_ptr;
     struct send_lambda
     {
-        S_HttpServer_Connection& _self;
+        std::weak_ptr<S_HttpServer_Connection> _self;
     
         explicit
-        send_lambda(S_HttpServer_Connection& self)
+        send_lambda(std::weak_ptr<S_HttpServer_Connection> self)
             : _self(self)
         {
         }
@@ -48,10 +48,10 @@ public :
             auto sp = std::make_shared<
                     boost::beast::http::message<isRequest, Body, Fields>>(std::move(msg));
     
-            auto self = _self.shared_from_this();
+            auto self = _self.lock();
             if (self && self->_stream.socket().is_open())
         	        boost::beast::http::async_write(
-        	            _self._stream,
+        	            self->_stream,
         	            *sp,
         	            [self, sp](boost::beast::error_code ec, std::size_t bytes)
         	            {
@@ -114,7 +114,7 @@ public :
 
     boost::beast::tcp_stream _stream;		//## attribute _stream
     
-    send_lambda _lambda;		//## attribute _lambda
+    //send_lambda _lambda;		//## attribute _lambda
 
     boost::beast::flat_buffer _buffer;		//## attribute _buffer
     

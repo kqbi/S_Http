@@ -39,7 +39,7 @@ void S_HttpServer_Service::getConnectionInfo(std::string &connectionId, std::str
     _connectionManager.getConntionById(connectionId, connection);
     if (connection) {
         ipAddress = connection->_remoteIpAddress;
-        _port = connection->_port;
+        port = connection->_port;
     }
     //#]
 }
