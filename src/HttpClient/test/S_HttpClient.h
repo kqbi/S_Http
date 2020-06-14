@@ -11,36 +11,30 @@
 #ifndef HttpClientTest_S_HttpClient_MainSession_H
 #define HttpClientTest_S_HttpClient_MainSession_H
 
-#include <oxf.h>
 #include "S_HttpClientAPI.h"
-#include <boost/asio.hpp>
 class S_Http_Msg;
 
 //## package HttpClientTest
 
 //## class S_HttpClient_MainSession
-class S_HttpClient_MainSession {
+class S_HttpClient {
     ////    Constructors and destructors    ////
     
 public :
 
-    S_HttpClient_MainSession();
+    S_HttpClient();
     
     //## operation ~S_HttpClient_MainSession()
-    ~S_HttpClient_MainSession();
+    ~S_HttpClient();
     
     ////    Operations    ////
-    
-    //## operation execProcessMsg(S_Http_Msg*)
-    void execProcessMsg(S_Http_Msg* msg);
-    
-    //## operation init()
-    void init();
     
     //## operation sendReqMsg(void*,READFROMSERVER,int&,std::string&,std::string&,std::string&,std::string,std::string,unsigned,bool,std::string)
     void sendReqMsg(void* pUser, READFROMSERVER readFromServer, int& method, std::string& target, std::string& host, std::string& port, std::string contentType = "", std::string body = "", bool ssl = false, unsigned version = 11, bool keepAlive = true, std::string basicAuth = "");
     
     ////    Attributes    ////
+
+    http_client _httpClient;
 };
 
 #endif

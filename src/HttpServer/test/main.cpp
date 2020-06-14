@@ -11,7 +11,7 @@
 #include <oxf.h>
 #include <iostream>
 #include <signal.h>
-#include "S_HttpServer_MainSession.h"
+#include "S_HttpServer.h"
 static bool finished = false;
 
 static void
@@ -21,13 +21,10 @@ signalHandler(int signo)
     finished = true;
 }
 
-
 int main(int argc, char* argv[]) {
     int status = 0;
-    if(OXF::initialize(0))
+    if(OXF::Instance().Initialize())
     {
-        OXF::frmThreadAffinities = {15,15,15,15,15,15};
-        OXF::start(true);
 #ifndef _WIN32
         if ( signal( SIGPIPE, SIG_IGN) == SIG_ERR)
         {
@@ -53,14 +50,16 @@ int main(int argc, char* argv[]) {
             exit( -1 );
         }
 
-        S_HttpServer_MainSession* mainSession = new S_HttpServer_MainSession();
-        mainSession->init();
+        S_HttpServer* server = new S_HttpServer();
+        std::string filePath = "";
+        std::string ip = "";
         unsigned short port = 1111;
-        if(!mainSession->listen(port)){
+        server->init(filePath);
+        if(!server->listen(ip, port)){
             std::cerr << "listen port " << port << " is failed!" << std::endl;
-            mainSession->stop();
-            delete mainSession;
-            OMOS::endApplication(-1);
+            server->stop();
+            delete server;
+            ::exit(-1);
         }
 
         while (!finished)
@@ -71,9 +70,9 @@ int main(int argc, char* argv[]) {
             usleep(1000*1000);
 #endif
         }
-        mainSession->stop();
-        delete mainSession;
-        OMOS::endApplication(status);
+        server->stop();
+        delete server;
+        exit(status);
         status = 0;
     }
     else

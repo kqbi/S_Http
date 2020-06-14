@@ -11,37 +11,25 @@
 #include <oxf.h>
 #include <iostream>
 #include <signal.h>
-#include "S_HttpClient_MainSession.h"
+#include "S_HttpClient.h"
 #include "S_HttpRes_Msg.h"
 
 static bool finished = false;
+
 static void
-signalHandler(int signo)
-{
+signalHandler(int signo) {
     std::cerr << "Shutting down" << std::endl;
     finished = true;
 }
-void readFromServer(void* pUser, S_Http_Msg* msg) {
- std::cout <<"mm:" <<  ((S_HttpRes_Msg*)msg)->_body << std::endl;
-    printf("msg:::::::::::::::\n");
-    S_HttpClient_MainSession *mainSession = (S_HttpClient_MainSession *) pUser;
-//    auto stronglf = mainSession->_processTp.lock();
-//    if (stronglf) {
-//        boost::asio::post(*stronglf,[&](){
-//            mainSession->execProcessMsg(msg);
-//        });
-//    } else {
-//        delete msg;
-//        msg = 0;
-//    }
+
+void readFromServer(void *pUser, S_Http_Msg *msg) {
+    std::cout << "mm:" << ((S_HttpRes_Msg *) msg)->_body << std::endl;
+    S_HttpClient *client = (S_HttpClient *) pUser;
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     int status = 0;
-    if(OXF::initialize(0))
-    {
-        OXF::frmThreadAffinities = {15,15,15,15,15,15};
-        OXF::start(true);
+    if (OXF::Instance().Initialize()) {
 #ifndef _WIN32
         if ( signal( SIGPIPE, SIG_IGN) == SIG_ERR)
         {
@@ -55,20 +43,17 @@ int main(int argc, char* argv[]) {
         //        }
 #endif
 
-        if ( signal( SIGINT, signalHandler  ) == SIG_ERR )
-        {
+        if (signal(SIGINT, signalHandler) == SIG_ERR) {
             std::cerr << "Couldn't install signal handler for SIGINT" << std::endl;
-            exit( -1 );
+            exit(-1);
         }
 
-        if ( signal( SIGTERM, signalHandler  ) == SIG_ERR )
-        {
+        if (signal(SIGTERM, signalHandler) == SIG_ERR) {
             std::cerr << "Couldn't install signal handler for SIGTERM" << std::endl;
-            exit( -1 );
+            exit(-1);
         }
 
-        S_HttpClient_MainSession* mainSession = new S_HttpClient_MainSession();
-        mainSession->init();
+        S_HttpClient *client = new S_HttpClient();
         int method = 2;
         std::string target = "/onvif-http/snapshot?Profile_1";
         unsigned version = 11;
@@ -78,21 +63,19 @@ int main(int argc, char* argv[]) {
         std::string contentType = "";
         std::string body = "";
         std::string basicAuth = "admin:admin123";
-        mainSession->sendReqMsg(mainSession, readFromServer, method, target, host, port, contentType, body, true, version, keepAlive, basicAuth);
-        while (!finished)
-        {
+        client->sendReqMsg(client, readFromServer, method, target, host, port, contentType, body, true, version,
+                           keepAlive, basicAuth);
+        while (!finished) {
 #ifdef WIN32
             Sleep(1000);
 #else
             usleep(1000*1000);
 #endif
         }
-        delete mainSession;
-        OMOS::endApplication(status);
+        delete client;
+        ::exit(status);
         status = 0;
-    }
-    else
-    {
+    } else {
         status = 1;
     }
     return status;

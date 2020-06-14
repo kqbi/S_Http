@@ -11,66 +11,40 @@
 #ifndef HttpServerTest_S_HttpServer_MainSession_H
 #define HttpServerTest_S_HttpServer_MainSession_H
 
-#include <oxf.h>
-#include "HttpServerTest.h"
-#include <omcollec.h>
 #include "S_HttpServerAPI.h"
 #include <boost/beast.hpp>
 #include <boost/asio.hpp>
 #include <unordered_map>
 #include <mutex>
 
-class S_HttpServer_Session;
-
 //## package HttpServerTest
 
 //## class S_HttpServer_MainSession
-class S_HttpServer_MainSession {
+class S_HttpServer {
     ////    Constructors and destructors    ////
 
 public :
 
     //## operation S_HttpServer_MainSession()
-    S_HttpServer_MainSession();
+    S_HttpServer();
 
-    ~S_HttpServer_MainSession();
+    ~S_HttpServer();
 
     ////    Operations    ////
 
-    //## operation execProcessMsg(S_HTTP_Msg*)
-    void execProcessMsg(S_Http_Msg *msg);
-
-    //## operation getNewConnectionId()
-    std::string getNewConnectionId();
-
     //## operation init()
-    void init();
+    void init(std::string &filePath);
 
     //## operation listen(unsigned short)
-    bool listen(unsigned short port);
-
-    //## operation sendResMsg(std::string&,http::status,unsigned,std::string&)
-    void sendResMsg(std::string &connectionId, boost::beast::http::status status, unsigned version, std::string &body);
+    bool listen(std::string ip, unsigned short port);
 
     ////    Additional operations    ////
-
-    void addSession(S_HttpServer_Session *p_S_HttpServer_Session);
-
-    void removeSession(std::string &sessionId);
-
-    void clearSession();
 
     void stop();
 
 public :
 
     ////    Relations and components    ////
-
-protected :
-
-    std::unordered_map<std::string, S_HttpServer_Session *> _sessions;
-
-    std::mutex _mutex;
 
     http_server _httpServer;
 };

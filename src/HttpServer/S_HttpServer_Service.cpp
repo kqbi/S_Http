@@ -23,7 +23,8 @@
 #include <uuid/uuid.h>
 #endif
 
-S_HttpServer_Service::S_HttpServer_Service(boost::asio::io_context &ioc) : _ioc(ioc), _acceptor(ioc), _ipAddress(""), _port(0), _pUser(0) {
+S_HttpServer_Service::S_HttpServer_Service(boost::asio::io_context &ioc) : _ioc(ioc), _acceptor(ioc), _ipAddress(""),
+                                                                           _port(0), _pUser(0) {
     //#[ operation S_HttpServer_Service(const std::string&,unsigned short&,const std::string&,std::size_t)
     //#]
 }
@@ -135,14 +136,15 @@ void S_HttpServer_Service::sendResMsg(std::string &connectionId, boost::beast::h
 void S_HttpServer_Service::startAccept() {
     //#[ operation startAccept()
     _acceptor.async_accept(boost::asio::make_strand(_ioc),
-                            boost::beast::bind_front_handler(
-                                    &S_HttpServer_Service::handleAccept,
-                                    this));
+                           boost::beast::bind_front_handler(
+                                   &S_HttpServer_Service::handleAccept,
+                                   this));
     //#]
 }
 
 void S_HttpServer_Service::addFilePath(const std::string &filePath) {
-    _filePaths.insert(filePath);
+    if (!filePath.empty())
+        _filePaths.insert(filePath);
 }
 
 void S_HttpServer_Service::addHandle(const std::string &url, ReqHandler req_handler) {
