@@ -13,45 +13,45 @@
 
 #include <string>
 //## package HttpMsg
-
+namespace S_Http {
 //## class S_Http_Msg
-class S_Http_Msg {
-public :
-
-    //## class S_Http_Msg::HEADER
-    class HEADER {
-        ////    Constructors and destructors    ////
-        
+    class S_Http_Msg {
     public :
-    
-        ~HEADER();
-        
+
+        //## class S_Http_Msg::HEADER
+        class HEADER {
+            ////    Constructors and destructors    ////
+
+        public :
+
+            ~HEADER();
+
+            ////    Attributes    ////
+
+            unsigned long long contentLength;        //## attribute contentLength
+
+            std::string contentType;        //## attribute contentType
+
+            unsigned version;        //## attribute version
+        };
+
+        ////    Constructors and destructors    ////
+
+        //## operation S_Http_Msg(std::string&,std::string&)
+        S_Http_Msg(std::string &connectionId, std::string &body);
+
+        //## operation ~S_Http_Msg()
+        virtual ~S_Http_Msg();
+
         ////    Attributes    ////
-        
-        unsigned long long contentLength;		//## attribute contentLength
-        
-        std::string contentType;		//## attribute contentType
-        
-        unsigned version;		//## attribute version
+
+        HEADER _header;        //## attribute _header
+
+        std::string _body;        //## attribute _body
+
+        std::string _connectionId;        //## attribute _connectionId
     };
-    
-    ////    Constructors and destructors    ////
-    
-    //## operation S_Http_Msg(std::string&,std::string&)
-    S_Http_Msg(std::string& connectionId, std::string& body);
-    
-    //## operation ~S_Http_Msg()
-    virtual ~S_Http_Msg();
-    
-    ////    Attributes    ////
-
-    HEADER _header;		//## attribute _header
-    
-    std::string _body;		//## attribute _body
-    
-    std::string _connectionId;		//## attribute _connectionId
-};
-
+}
 #endif
 /*********************************************************************
 	File Path	: ../../src/HttpMsg/S_Http_Msg.h

@@ -3,7 +3,7 @@
 
 #include "S_Http_Msg.h"
 #include <boost/asio/io_context.hpp>
-
+using namespace S_Http;
 #if defined( _WIN32 ) || defined( __MINGW32__ )
 #   if defined( S_HTTP_CLIENT_EXPORTS )
 #       define S_HTTP_CLIENT_EXPORT __declspec(dllexport)

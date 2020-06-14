@@ -13,61 +13,67 @@
 
 #include "S_HttpRes_Msg.h"
 #include "S_HttpClient_ConnectBase.h"
-
-class S_HttpClient_Service;
+namespace S_Http {
+    class S_HttpClient_Service;
 
 //## package HttpClient
 
 //## class S_HttpClient_Connect
-class S_HttpClient_Connect : public S_HttpClient_ConnectBase {
-public :
+    class S_HttpClient_Connect : public S_HttpClient_ConnectBase {
+    public :
 
-    typedef void (*READFROMSERVER)(void *pUser, S_Http_Msg *msg);
-    ////    Constructors and destructors    ////
+        typedef void (*READFROMSERVER)(void *pUser, S_Http_Msg *msg);
+        ////    Constructors and destructors    ////
 
-    //## operation S_HttpClient_Connect(void*,READFROMSERVER,boost::asio::io_context&,S_HttpClient_Service&)
-    S_HttpClient_Connect(void *pUser, READFROMSERVER readFromServer, boost::asio::io_context &ioc,
-                         S_HttpClient_ConnectionManager &connectionManager) : S_HttpClient_ConnectBase(ioc, connectionManager), _pUser(
-            pUser), _readFromServer(readFromServer), _stream(boost::asio::make_strand(ioc)) {};
+        //## operation S_HttpClient_Connect(void*,READFROMSERVER,boost::asio::io_context&,S_HttpClient_Service&)
+        S_HttpClient_Connect(void *pUser, READFROMSERVER readFromServer, boost::asio::io_context &ioc,
+                             S_HttpClient_ConnectionManager &connectionManager) : S_HttpClient_ConnectBase(ioc,
+                                                                                                           connectionManager),
+                                                                                  _pUser(
+                                                                                          pUser),
+                                                                                  _readFromServer(readFromServer),
+                                                                                  _stream(boost::asio::make_strand(
+                                                                                          ioc)) {};
 
-    ~S_HttpClient_Connect() {close();};
+        ~S_HttpClient_Connect() { close(); };
 
-    ////    Operations    ////
+        ////    Operations    ////
 
-    //## operation fail(beast::error_code,char const*)
-    void fail(boost::beast::error_code ec, char const *what);
+        //## operation fail(beast::error_code,char const*)
+        void fail(boost::beast::error_code ec, char const *what);
 
-    //## operation onConnect(beast::error_code,tcp::resolver::results_type::endpoint_type)
-    void onConnect(boost::beast::error_code ec, boost::asio::ip::tcp::resolver::results_type::endpoint_type endpointType);
+        //## operation onConnect(beast::error_code,tcp::resolver::results_type::endpoint_type)
+        void onConnect(boost::beast::error_code ec,
+                       boost::asio::ip::tcp::resolver::results_type::endpoint_type endpointType);
 
-    //## operation onRead(beast::error_code,std::size_t)
-    void onRead(boost::beast::error_code ec, std::size_t bytesTransferred);
+        //## operation onRead(beast::error_code,std::size_t)
+        void onRead(boost::beast::error_code ec, std::size_t bytesTransferred);
 
-    //## operation onResolve(beast::error_code,boost::asio::ip::tcp::resolver::results_type)
-    void onResolve(boost::beast::error_code ec, boost::asio::ip::tcp::resolver::results_type results);
+        //## operation onResolve(beast::error_code,boost::asio::ip::tcp::resolver::results_type)
+        void onResolve(boost::beast::error_code ec, boost::asio::ip::tcp::resolver::results_type results);
 
-    //## operation onWrite(beast::error_code,std::size_t)
-    void onWrite(boost::beast::error_code ec, std::size_t bytesTransferred);
+        //## operation onWrite(beast::error_code,std::size_t)
+        void onWrite(boost::beast::error_code ec, std::size_t bytesTransferred);
 
-    //## operation resolve(std::string&,std::string&)
-    void resolve(std::string &host, std::string &port);
+        //## operation resolve(std::string&,std::string&)
+        void resolve(std::string &host, std::string &port);
 
-    void stop();
+        void stop();
 
-    void close();
+        void close();
 
-    //## operation sendReqMsg()
-    void sendReqMsg();
+        //## operation sendReqMsg()
+        void sendReqMsg();
 
-    ////    Attributes    ////
+        ////    Attributes    ////
 
-    void *_pUser;        //## attribute _pUser
+        void *_pUser;        //## attribute _pUser
 
-    READFROMSERVER _readFromServer;        //## attribute _readFromServer
+        READFROMSERVER _readFromServer;        //## attribute _readFromServer
 
-    boost::beast::tcp_stream _stream;        //## attribute _stream
-};
-
+        boost::beast::tcp_stream _stream;        //## attribute _stream
+    };
+}
 #endif
 /*********************************************************************
 	File Path	: ../../src/HttpClient/S_HttpClient_Connect.h

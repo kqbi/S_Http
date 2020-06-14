@@ -13,7 +13,6 @@
 #include <signal.h>
 #include "S_HttpClient.h"
 #include "S_HttpRes_Msg.h"
-
 static bool finished = false;
 
 static void
@@ -22,7 +21,7 @@ signalHandler(int signo) {
     finished = true;
 }
 
-void readFromServer(void *pUser, S_Http_Msg *msg) {
+void readFromServer(void *pUser, S_Http::S_Http_Msg *msg) {
     std::cout << "mm:" << ((S_HttpRes_Msg *) msg)->_body << std::endl;
     S_HttpClient *client = (S_HttpClient *) pUser;
 }

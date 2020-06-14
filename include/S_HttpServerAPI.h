@@ -4,7 +4,7 @@
 #include "S_HttpReq_Msg.h"
 #include <boost/asio/io_context.hpp>
 #include <memory>
-
+using namespace S_Http;
 #if defined( _WIN32 ) || defined( __MINGW32__ )
 #   if defined( S_HTTP_SERVER_EXPORTS )
 #       define S_HTTP_SERVER_EXPORT __declspec(dllexport)
