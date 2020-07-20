@@ -9,12 +9,13 @@ set(LINK_LIB_LIST)
 
 if (CMAKE_SYSTEM_NAME MATCHES "Linux")
     set(system linux)
-    #set(BOOST_DATE_TIME_LIB libboost_date_time.a)
-    #set(BOOST_THREAD_LIB libboost_thread.a)
+    set(THIRDPARTY "/home/vmns/3rdparty")    
+    set(BOOST_DATE_TIME_LIB libboost_date_time.a)
+    set(BOOST_THREAD_LIB libboost_thread.a)
 elseif (CMAKE_SYSTEM_NAME MATCHES "Windows")
     set(system win)
-    #set(BOOST_DATE_TIME_LIB libboost_date_time-vc141-mt-s-x64-1_72.lib)
-    #set(BOOST_THREAD_LIB libboost_thread-vc141-mt-s-x64-1_72.lib)
+    set(BOOST_DATE_TIME_LIB libboost_date_time-vc141-mt-s-x64-1_72.lib)
+    set(BOOST_THREAD_LIB libboost_thread-vc141-mt-s-x64-1_72.lib)
     set(SSL_LIB libssl64MT.lib)
     set(CRYPTO_LIB libcrypto64MT.lib)
 endif ()
@@ -34,13 +35,6 @@ set(INSTALL_PATH_INCLUDE ${THIRDPARTY}/${CMAKE_PROJECT_NAME}/include)
 #安装头文件至系统目录
 install(DIRECTORY src DESTINATION ${INSTALL_PATH_INCLUDE} FILES_MATCHING PATTERN "*.h")
 
-#boost
-set(BOOST_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/boost)
-set(BOOST_INCLUDE_PATH ${BOOST_ROOT_PATH}/include)
-set(BOOST_LIB_PATH ${BOOST_ROOT_PATH}/lib/${system}/${platform})
-INCLUDE_DIRECTORIES(${BOOST_INCLUDE_PATH})
-link_directories(${BOOST_LIB_PATH})
-
 #ssl
 if (WIN32)
     set(SSL_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/openssl)
@@ -54,6 +48,15 @@ set(OXF_Root ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/oxf)
 aux_source_directory(${OXF_Root}/src src_oxf)
 include_directories(${OXF_Root}/src)
 add_library(oxf STATIC ${src_oxf})
+list(APPEND LINK_LIB_LIST oxf)
+
+#boost
+set(BOOST_ROOT_PATH ${THIRDPARTY}/boost)
+set(BOOST_INCLUDE_PATH ${BOOST_ROOT_PATH}/include)
+set(BOOST_LIB_PATH ${BOOST_ROOT_PATH}/lib/${system}/${platform})
+INCLUDE_DIRECTORIES(${BOOST_INCLUDE_PATH})
+link_directories(${BOOST_LIB_PATH})
+list(APPEND LINK_LIB_LIST ${BOOST_DATE_TIME_LIB} ${BOOST_THREAD_LIB})
 
 if (WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")

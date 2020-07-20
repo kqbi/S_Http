@@ -1,7 +1,6 @@
 if (WIN32)
     list(APPEND LINK_LIB_LIST ${SSL_LIB} ${CRYPTO_LIB})
 endif (WIN32)
-list(APPEND LINK_LIB_LIST oxf)
 
 INCLUDE_DIRECTORIES("../../include")
 INCLUDE_DIRECTORIES("../../src/HttpClient/test")
