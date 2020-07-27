@@ -1,4 +1,0 @@
-[submodule "3rdparty/oxf"]
-	path = 3rdparty/oxf
-	url = https://github.com/kqbi/oxf.git
-	branch = c11
