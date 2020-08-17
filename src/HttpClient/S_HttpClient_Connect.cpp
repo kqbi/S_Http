@@ -28,7 +28,7 @@ namespace S_Http {
             return fail(ec, "connect");
 
         // Set a timeout on the operation
-        _stream.expires_after(std::chrono::seconds(30));
+        _stream.expires_after(std::chrono::seconds(3));
 
         // Send the HTTP request to the remote host
         boost::beast::http::async_write(_stream, _req,
@@ -96,7 +96,7 @@ namespace S_Http {
             return fail(ec, "resolve");
 
         // Set a timeout on the operation
-        _stream.expires_after(std::chrono::seconds(30));
+        _stream.expires_after(std::chrono::seconds(3));
 
         // Make the connection on the IP address we get from a lookup
         _stream.async_connect(
