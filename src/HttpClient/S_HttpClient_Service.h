@@ -27,7 +27,6 @@ namespace S_Http {
     class S_HttpClient_Service {
     public :
 
-        typedef void (*READFROMSERVER)(void *pUser, S_Http_Msg *msg);
         ////    Constructors and destructors    ////
 
         //## operation S_HttpClient_Service(std::size_t)
@@ -43,11 +42,8 @@ namespace S_Http {
         //## operation handleStop()
         void handleStop();
 
-        //## operation readFromServer(void*,READFROMSERVER)
-        void readFromServer(void *pUser, READFROMSERVER readFromServer);
-
         //## operation sendReqMsg(void*,READFROMSERVER,int&,std::string&,unsigned,bool,std::string&,std::string&,std::string&,std::string&,std::string&)
-        void sendReqMsg(void *pUser, READFROMSERVER readFromServer, int &method, std::string &target, unsigned version,
+        void sendReqMsg(std::function<void(S_Http_Msg *msg)> readFromServer, int &method, std::string &target, unsigned version,
                         bool keepAlive, std::string &host, std::string &port, std::string &contentType,
                         std::string &body,
                         std::string &basicAuth, bool ssl);
@@ -55,10 +51,6 @@ namespace S_Http {
         ////    Attributes    ////
 
         boost::asio::io_context &_ioc;        //## attribute _ioContext
-
-        void *_pUser;        //## attribute _pUser
-
-        READFROMSERVER _readFromServer;        //## attribute _readFromServer
 
         boost::beast::http::response<boost::beast::http::string_body> _res;        //## attribute _res
 

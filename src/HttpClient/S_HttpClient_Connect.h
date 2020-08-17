@@ -22,15 +22,12 @@ namespace S_Http {
     class S_HttpClient_Connect : public S_HttpClient_ConnectBase {
     public :
 
-        typedef void (*READFROMSERVER)(void *pUser, S_Http_Msg *msg);
         ////    Constructors and destructors    ////
 
         //## operation S_HttpClient_Connect(void*,READFROMSERVER,boost::asio::io_context&,S_HttpClient_Service&)
-        S_HttpClient_Connect(void *pUser, READFROMSERVER readFromServer, boost::asio::io_context &ioc,
+        S_HttpClient_Connect(std::function<void(S_Http_Msg *msg)> readFromServer, boost::asio::io_context &ioc,
                              S_HttpClient_ConnectionManager &connectionManager) : S_HttpClient_ConnectBase(ioc,
                                                                                                            connectionManager),
-                                                                                  _pUser(
-                                                                                          pUser),
                                                                                   _readFromServer(readFromServer),
                                                                                   _stream(boost::asio::make_strand(
                                                                                           ioc)) {};
@@ -67,9 +64,7 @@ namespace S_Http {
 
         ////    Attributes    ////
 
-        void *_pUser;        //## attribute _pUser
-
-        READFROMSERVER _readFromServer;        //## attribute _readFromServer
+        std::function<void(S_Http_Msg *msg)> _readFromServer;        //## attribute _readFromServer
 
         boost::beast::tcp_stream _stream;        //## attribute _stream
     };

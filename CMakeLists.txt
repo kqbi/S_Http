@@ -9,7 +9,7 @@ set(LINK_LIB_LIST)
 
 if (CMAKE_SYSTEM_NAME MATCHES "Linux")
     set(system linux)
-    set(THIRDPARTY "/home/kqbi/3rdparty")    
+    set(THIRDPARTY "/home/vmns/3rdparty")    
     set(BOOST_DATE_TIME_LIB libboost_date_time.a)
     set(BOOST_THREAD_LIB libboost_thread.a)
     set(OXF_LIB liboxf.a)
@@ -40,7 +40,7 @@ install(DIRECTORY src DESTINATION ${INSTALL_PATH_INCLUDE} FILES_MATCHING PATTERN
 
 #ssl
 if (WIN32)
-    set(SSL_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/openssl)
+    set(SSL_ROOT_PATH ${THIRDPARTY}/openssl)
     set(SSL_INCLUDE_PATH ${SSL_ROOT_PATH}/include)
     set(SSL_LIB_PATH ${SSL_ROOT_PATH}/lib/${platform}/VC/static)
     INCLUDE_DIRECTORIES(${SSL_INCLUDE_PATH})

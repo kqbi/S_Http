@@ -62,7 +62,7 @@ namespace S_Http {
                                                body,
                                                content_type,
                                                contentLength);
-        _readFromServer(_pUser, msg);
+        _readFromServer(msg);
 
         // Gracefully close the socket
         _stream.socket().shutdown(boost::asio::ip::tcp::socket::shutdown_both, ec);

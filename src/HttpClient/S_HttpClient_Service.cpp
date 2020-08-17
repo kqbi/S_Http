@@ -17,22 +17,12 @@
 //## package HttpClient
 namespace S_Http {
 //## class S_HttpClient_Service
-    S_HttpClient_Service::S_HttpClient_Service(boost::asio::io_context &ioc) : _ioc(ioc), _pUser(0),
-                                                                               _readFromServer(0) {
+    S_HttpClient_Service::S_HttpClient_Service(boost::asio::io_context &ioc) : _ioc(ioc) {
         //#[ operation S_HttpClient_Service(std::size_t)
         //#]
     }
 
     S_HttpClient_Service::~S_HttpClient_Service() {
-    }
-
-    void S_HttpClient_Service::execProcessMsg(S_Http_Msg *msg) {
-        //#[ operation execProcessMsg(S_Http_Msg*)
-        if (_pUser && _readFromServer)
-            _readFromServer(_pUser, msg);
-        else
-            delete msg;
-        //#]
     }
 
     void S_HttpClient_Service::handleStop() {
@@ -41,14 +31,7 @@ namespace S_Http {
         //#]
     }
 
-    void S_HttpClient_Service::readFromServer(void *pUser, READFROMSERVER readFromServer) {
-        //#[ operation readFromServer(void*,READFROMSERVER)
-        _pUser = pUser;
-        _readFromServer = readFromServer;
-        //#]
-    }
-
-    void S_HttpClient_Service::sendReqMsg(void *pUser, READFROMSERVER readFromServer, int &method, std::string &target,
+    void S_HttpClient_Service::sendReqMsg(std::function<void(S_Http_Msg *msg)> readFromServer, int &method, std::string &target,
                                           unsigned version, bool keepAlive, std::string &host, std::string &port,
                                           std::string &contentType, std::string &body, std::string &basicAuth,
                                           bool ssl) {
@@ -65,7 +48,7 @@ namespace S_Http {
                     std::make_shared<S_HttpsClient_Connect>(_ioc, ctx, _connectionManager));
         } else {
             connect = std::dynamic_pointer_cast<S_HttpClient_ConnectBase>(
-                    std::make_shared<S_HttpClient_Connect>(pUser, readFromServer, _ioc, _connectionManager));
+                    std::make_shared<S_HttpClient_Connect>(readFromServer, _ioc, _connectionManager));
         }
         _connectionManager.join(connect);
         connect->_req.version(version);
