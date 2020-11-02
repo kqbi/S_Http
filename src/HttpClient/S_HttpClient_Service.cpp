@@ -31,9 +31,9 @@ namespace S_Http {
         //#]
     }
 
-    void S_HttpClient_Service::sendReqMsg(std::function<void(S_Http_Msg *msg)> readFromServer, int &method, std::string &target,
+    void S_HttpClient_Service::sendReqMsg(std::function<void(S_Http_Msg *msg)> readFromServer, int method, std::string &target,
                                           unsigned version, bool keepAlive, std::string &host, std::string &port,
-                                          std::string &contentType, std::string &body, std::string &basicAuth,
+                                          std::string &contentType, std::string &body, std::string &authorization,
                                           bool ssl) {
         //#[ operation sendReqMsg(void*,READFROMSERVER,int&,std::string&,unsigned,bool,std::string&,std::string&,std::string&,std::string&,std::string&)
         std::shared_ptr<S_HttpClient_ConnectBase> connect = 0;
@@ -60,10 +60,7 @@ namespace S_Http {
         if (!contentType.empty())
             connect->_req.set(boost::beast::http::field::content_type, contentType);
 
-        std::string base64string = base64Encode(basicAuth);
-
-        std::string authorization = "Basic " + base64string;
-        if (!basicAuth.empty())
+        if (!authorization.empty())
             connect->_req.set(boost::beast::http::field::authorization, authorization);
 
         connect->_req.keep_alive(keepAlive);

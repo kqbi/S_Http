@@ -158,4 +158,10 @@ namespace S_Http {
         free(start);
         return out_str;
     }
+
+    const char* Strskip(const char* s) {
+        assert(s);
+        while (' ' == *s || '\t' == *s) ++s;
+        return s;
+    }
 }

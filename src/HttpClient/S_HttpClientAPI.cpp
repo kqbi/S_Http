@@ -16,12 +16,12 @@ void S_HTTP_CLIENT_CALL S_HttpClient_Release(http_client ctx) {
     delete (S_HttpClient_Service*)ctx;
 }
 
-void S_HTTP_CLIENT_CALL S_HttpClient_SendReqMsg(http_client ctx, std::function<void(S_Http_Msg *msg)> readFromServer, int &method, std::string &target,
+void S_HTTP_CLIENT_CALL S_HttpClient_SendReqMsg(http_client ctx, std::function<void(S_Http_Msg *msg)> readFromServer, int method, std::string &target,
                                       std::string &host, std::string &port, std::string contentType, std::string body, bool ssl,
-                                      unsigned version, bool keepAlive, std::string basicAuth) {
+                                      unsigned version, bool keepAlive, std::string authorization) {
     assert(ctx);
     ((S_HttpClient_Service*)ctx)->sendReqMsg(readFromServer, method, target, version, keepAlive, host, port,
-                                                 contentType, body, basicAuth, ssl);
+                                                 contentType, body, authorization, ssl);
 }
 
 #ifdef __cplusplus

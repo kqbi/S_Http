@@ -34,7 +34,7 @@ namespace S_Http {
             return fail(ec, "resolve");
 
         // Set a timeout on the operation
-        boost::beast::get_lowest_layer(_stream).expires_after(std::chrono::seconds(30));
+        boost::beast::get_lowest_layer(_stream).expires_after(std::chrono::seconds(3));
 
         // Make the connection on the IP address we get from a lookup
         boost::beast::get_lowest_layer(_stream).async_connect(
@@ -62,7 +62,7 @@ namespace S_Http {
             return fail(ec, "handshake");
 
         // Set a timeout on the operation
-        boost::beast::get_lowest_layer(_stream).expires_after(std::chrono::seconds(30));
+        boost::beast::get_lowest_layer(_stream).expires_after(std::chrono::seconds(3));
 
         // Send the HTTP request to the remote host
         boost::beast::http::async_write(_stream, _req,
@@ -104,10 +104,12 @@ namespace S_Http {
     }
 
     void S_HttpsClient_Connect::on_shutdown(boost::beast::error_code ec) {
+        printf("on_shutdown----------\n");
         if (ec == boost::asio::error::eof) {
             // Rationale:
             // http://stackoverflow.com/questions/25587403/boost-asio-ssl-async-shutdown-always-finishes-with-an-error
             ec = {};
+            printf("stop----------\n");
             _connectionManager.stop(std::dynamic_pointer_cast<S_HttpClient_ConnectBase>(shared_from_this()));
         }
         if (ec)

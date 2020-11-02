@@ -13,6 +13,7 @@
 #include <signal.h>
 #include "S_HttpClient.h"
 #include "S_HttpRes_Msg.h"
+
 static bool finished = false;
 
 static void
@@ -54,16 +55,23 @@ int main(int argc, char *argv[]) {
 
         S_HttpClient *client = new S_HttpClient();
         int method = 2;
-        std::string target = "/onvif-http/snapshot?Profile_1";
+        std::string target = "/onvif-http/snapshot?Profile_101";
         unsigned version = 11;
         bool keepAlive = true;
-        std::string host = "127.0.0.1";
-        std::string port = "16972";
+        std::string host = "192.168.1.101";
+        std::string port = "";
         std::string contentType = "";
         std::string body = "";
-        std::string basicAuth = "admin:admin123";
-        client->sendReqMsg(client, readFromServer, method, target, host, port, contentType, body, true, version,
-                           keepAlive, basicAuth);
+        std::string authorization = "";
+        client->sendReqMsg([](S_Http_Msg *msg) {
+                               S_HttpRes_Msg *res = (S_HttpRes_Msg *) msg;
+                               std::string authStr = res->_res.find(boost::beast::http::field::www_authenticate)->value().to_string();
+                               S_Http_Msg::http_header_www_authenticate_t auth;
+							   memset(&auth,0,sizeof(auth));
+                               res->WWWAthenticate(authStr.c_str(), &auth);
+printf("res====================\n");
+                           }, method, target, host, port, contentType, body, false, version,
+                           keepAlive, authorization);
         while (!finished) {
 #ifdef WIN32
             Sleep(1000);

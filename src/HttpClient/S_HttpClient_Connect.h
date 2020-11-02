@@ -67,6 +67,8 @@ namespace S_Http {
         std::function<void(S_Http_Msg *msg)> _readFromServer;        //## attribute _readFromServer
 
         boost::beast::tcp_stream _stream;        //## attribute _stream
+
+        std::shared_ptr<boost::asio::deadline_timer> _timer;
     };
 }
 #endif

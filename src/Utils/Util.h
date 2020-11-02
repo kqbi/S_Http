@@ -22,5 +22,7 @@ namespace S_Http {
     std::string urldecode(std::string &str_source);
 
     std::string urlencode(std::string &str_source);
+
+    const char* Strskip(const char* s);
 }
 #endif //S_HTTP_UTIL_H

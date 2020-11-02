@@ -11,6 +11,8 @@
 #include "S_HttpClient_Connect.h"
 #include "S_HttpClient_Service.h"
 #include "S_HttpRes_Msg.h"
+#include "OXFWorkPoller.h"
+
 //## package HttpClient
 namespace S_Http {
     void S_HttpClient_Connect::fail(boost::beast::error_code ec, char const *what) {
@@ -62,6 +64,7 @@ namespace S_Http {
                                                body,
                                                content_type,
                                                contentLength);
+        msg->_res = _res;
         _readFromServer(msg);
 
         // Gracefully close the socket

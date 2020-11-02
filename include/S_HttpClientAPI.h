@@ -30,7 +30,7 @@ S_HTTP_CLIENT_EXPORT http_client S_HTTP_CLIENT_CALL S_HttpClient_Create(boost::a
 S_HTTP_CLIENT_EXPORT void S_HTTP_CLIENT_CALL S_HttpClient_Release(http_client ctx);
 
 S_HTTP_CLIENT_EXPORT void S_HTTP_CLIENT_CALL
-S_HttpClient_SendReqMsg(http_client ctx, std::function<void(S_Http_Msg *msg)> readFromServer, int &method, std::string &target, std::string &host,
+S_HttpClient_SendReqMsg(http_client ctx, std::function<void(S_Http_Msg *msg)> readFromServer, int method, std::string &target, std::string &host,
                         std::string &port, std::string contentType = "", std::string body = "", bool ssl = false, unsigned version = 11,
                         bool keepAlive = true, std::string basicAuth = "");
 

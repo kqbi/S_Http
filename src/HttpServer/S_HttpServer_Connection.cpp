@@ -21,9 +21,9 @@ namespace S_Http {
                                                      boost::asio::ip::tcp::socket &&socket,
                                                      S_HttpServer_ConnectionManager &connectionManager,
                                                      std::string &remoteIpAddress, unsigned short &port) :
-                                                     _stream(std::move(socket)), _connectManager(connectionManager),
-                                                     _connectionId(connectionId), _remoteIpAddress(remoteIpAddress),
-                                                     _port(port),_service(service),_keepAlive(true) {
+            _stream(std::move(socket)), _connectManager(connectionManager),
+            _connectionId(connectionId), _remoteIpAddress(remoteIpAddress),
+            _port(port), _service(service), _keepAlive(true) {
         //#[ operation S_HttpServer_Connection(std::string&,S_HttpServer_Service&,tcp::socket&&,S_HttpServer_ConnectionManager&,std::string&,unsigned short&)
         //#]
     }
@@ -237,10 +237,11 @@ namespace S_Http {
             msg->_remoteIp = _remoteIpAddress;
             msg->_remotePort = _port;
             _keepAlive = req.keep_alive();
-
+            msg->_req = req;
             if (!_service.handleHttp(msg)) {
                 send(not_found(req.target()));
             }
+            //req.
         }
 #if 0
         {

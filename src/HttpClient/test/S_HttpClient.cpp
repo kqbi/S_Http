@@ -23,11 +23,11 @@ S_HttpClient::~S_HttpClient() {
     //#]
 }
 
-void S_HttpClient::sendReqMsg(void *pUser, READFROMSERVER readFromServer, int &method, std::string &target,
+void S_HttpClient::sendReqMsg(std::function<void(S_Http_Msg *msg)> readFromServer, int &method, std::string &target,
                               std::string &host, std::string &port, std::string contentType, std::string body, bool ssl,
-                              unsigned version, bool keepAlive, std::string basicAuth) {
+                              unsigned version, bool keepAlive, std::string authorization) {
     //#[ operation sendReqMsg(void*,READFROMSERVER,int&,std::string&,std::string&,std::string&,std::string,std::string,unsigned,bool,std::string)
-    S_HttpClient_SendReqMsg(_httpClient, pUser, readFromServer, method, target, host, port, contentType, body, ssl, version, keepAlive, basicAuth);
+    S_HttpClient_SendReqMsg(_httpClient, readFromServer, method, target, host, port, contentType, body, ssl, version, keepAlive, authorization);
     //#]
 }
 

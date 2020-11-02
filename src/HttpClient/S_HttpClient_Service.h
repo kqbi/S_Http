@@ -43,10 +43,10 @@ namespace S_Http {
         void handleStop();
 
         //## operation sendReqMsg(void*,READFROMSERVER,int&,std::string&,unsigned,bool,std::string&,std::string&,std::string&,std::string&,std::string&)
-        void sendReqMsg(std::function<void(S_Http_Msg *msg)> readFromServer, int &method, std::string &target, unsigned version,
+        void sendReqMsg(std::function<void(S_Http_Msg *msg)> readFromServer, int method, std::string &target, unsigned version,
                         bool keepAlive, std::string &host, std::string &port, std::string &contentType,
                         std::string &body,
-                        std::string &basicAuth, bool ssl);
+                        std::string &authorization, bool ssl);
 
         ////    Attributes    ////
 
