@@ -14,6 +14,7 @@
 #include "boost/asio.hpp"
 #include "boost/beast.hpp"
 #include "boost/noncopyable.hpp"
+
 namespace S_Http {
     class S_HttpReq_Msg;
 

@@ -10,7 +10,7 @@
 
 #include "S_HttpServer.h"
 #include "S_HttpReq_Msg.h"
-#include "OXFWorkPoller.h"
+#include "oxf/OXFWorkPoller.h"
 //## package HttpServerTest
 
 //## class S_HttpServer_MainSession

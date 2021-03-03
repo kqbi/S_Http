@@ -23,7 +23,7 @@ namespace S_Http {
                                                      std::string &remoteIpAddress, unsigned short &port) :
             _stream(std::move(socket)), _connectManager(connectionManager),
             _connectionId(connectionId), _remoteIpAddress(remoteIpAddress),
-            _port(port), _service(service), _keepAlive(true) {
+            _port(port), _service(service), _keepAlive(true){
         //#[ operation S_HttpServer_Connection(std::string&,S_HttpServer_Service&,tcp::socket&&,S_HttpServer_ConnectionManager&,std::string&,unsigned short&)
         //#]
     }
@@ -190,7 +190,7 @@ namespace S_Http {
             }
 #endif
 
-            res.set(boost::beast::http::field::version, req.version());
+            res.set(boost::beast::http::field::version, std::to_string(req.version()));
             res.set(boost::beast::http::field::server, BOOST_BEAST_VERSION_STRING);
             res.set(boost::beast::http::field::content_type, mime_type(url));
             res.content_length(iRangeEnd - iRangeStart + 1);

@@ -125,7 +125,10 @@ namespace S_Http {
     bool S_HttpServer_Service::handleHttp(S_HttpReq_Msg *msg) {
         auto it = _handlerMap.find(msg->_path);
         if (it != _handlerMap.end()) {
-            it->second(msg);
+            boost::asio::post(_ioc, [=]() {
+                if (it->second)
+                    it->second(msg);
+            });
             return true;
         }
         return false;
