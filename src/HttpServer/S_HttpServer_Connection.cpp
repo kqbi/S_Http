@@ -18,12 +18,12 @@
 namespace S_Http {
 //## class S_HttpServer_Connection
     S_HttpServer_Connection::S_HttpServer_Connection(std::string &connectionId, S_HttpServer_Service &service,
-                                                     boost::asio::ip::tcp::socket &&socket,
+                                                     boost::asio::ip::tcp::socket &&socket,boost::asio::io_context &ioc,
                                                      S_HttpServer_ConnectionManager &connectionManager,
                                                      std::string &remoteIpAddress, unsigned short &port) :
             _stream(std::move(socket)), _connectManager(connectionManager),
             _connectionId(connectionId), _remoteIpAddress(remoteIpAddress),
-            _port(port), _service(service), _keepAlive(true){
+            _port(port), _service(service), _keepAlive(true), _strand(ioc){
         //#[ operation S_HttpServer_Connection(std::string&,S_HttpServer_Service&,tcp::socket&&,S_HttpServer_ConnectionManager&,std::string&,unsigned short&)
         //#]
     }
@@ -49,8 +49,8 @@ namespace S_Http {
         boost::beast::http::async_read(_stream,
                                        _buffer,
                                        _req,
-                                       boost::beast::bind_front_handler(&S_HttpServer_Connection::handleRead,
-                                                                        shared_from_this()));
+                                       _strand.wrap(std::bind(&S_HttpServer_Connection::handleRead,
+                                                                        shared_from_this(),std::placeholders::_1,std::placeholders::_2)));
         //#]
     }
 

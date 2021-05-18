@@ -47,6 +47,7 @@ namespace S_Http {
                     connectId,
                     *this,
                     std::move(socket),
+                    _ioc,
                     _connectionManager,
                     remoteIpAddress,
                     port)->start();

@@ -10,14 +10,13 @@
 
 #include "S_HttpServer.h"
 #include "S_HttpReq_Msg.h"
-#include "oxf/OXFWorkPoller.h"
 //## package HttpServerTest
 
 //## class S_HttpServer_MainSession
 
-S_HttpServer::S_HttpServer() : _httpServer(0) {
+S_HttpServer::S_HttpServer(boost::asio::io_context &ioc) : _httpServer(0) {
     //#[ operation S_HttpServer_MainSession()
-    _httpServer = S_HttpServer_Create(OXFWorkPollerPool::Instance()._ioc);
+    _httpServer = S_HttpServer_Create(ioc);
     //#]
 }
 

@@ -26,7 +26,7 @@ class S_HttpServer {
 public :
 
     //## operation S_HttpServer_MainSession()
-    S_HttpServer();
+    S_HttpServer(boost::asio::io_context &ioc);
 
     ~S_HttpServer();
 

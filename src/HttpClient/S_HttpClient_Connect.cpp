@@ -19,24 +19,26 @@ namespace S_Http {
         //#[ operation fail(beast::error_code,char const*)
         //std::cerr << what << ": " << ec.message() << "\n";
         if (ec != boost::asio::error::operation_aborted)
-            _connectionManager.stop(std::dynamic_pointer_cast<S_HttpClient_ConnectBase>(shared_from_this()));
+            _connectionManager.stop(shared_from_this());
         //#]
     }
 
     void S_HttpClient_Connect::onConnect(boost::beast::error_code ec,
                                          boost::asio::ip::tcp::resolver::results_type::endpoint_type endpointType) {
         //#[ operation onConnect(beast::error_code,tcp::resolver::results_type::endpoint_type)
-        if (ec)
-            return fail(ec, "connect");
+        if (ec) {
+             fail(ec, "connect");
+             return;
+        }
 
         // Set a timeout on the operation
         _stream.expires_after(std::chrono::seconds(3));
 
         // Send the HTTP request to the remote host
         boost::beast::http::async_write(_stream, _req,
-                                        boost::beast::bind_front_handler(
+                                        _strand.wrap(std::bind(
                                                 &S_HttpClient_Connect::onWrite,
-                                                std::dynamic_pointer_cast<S_HttpClient_Connect>(shared_from_this())));
+                                                std::dynamic_pointer_cast<S_HttpClient_Connect>(shared_from_this()), std::placeholders::_1,std::placeholders::_2)));
         //#]
     }
 
@@ -44,9 +46,10 @@ namespace S_Http {
         //#[ operation onRead(beast::error_code,std::size_t)
         boost::ignore_unused(bytesTransferred);
 
-        if (ec)
-            return fail(ec, "read");
-
+        if (ec) {
+            fail(ec, "read");
+            return;
+        }
         std::string body = "";
         std::uint64_t contentLength = 0;
         if (_res.has_content_length()) {
@@ -71,8 +74,10 @@ namespace S_Http {
         _stream.socket().shutdown(boost::asio::ip::tcp::socket::shutdown_both, ec);
         //std::cout << ec.message() << std::endl;
         // not_connected happens sometimes so don't bother reporting it.
-        if (ec && ec != boost::beast::errc::not_connected)
-            return fail(ec, "shutdown");
+        if (ec && ec != boost::beast::errc::not_connected) {
+            fail(ec, "shutdown");
+            return;
+        }
         _connectionManager.stop(std::dynamic_pointer_cast<S_HttpClient_ConnectBase>(shared_from_this()));
         // If we get here then the connection is closed gracefully
         //#]
@@ -95,8 +100,10 @@ namespace S_Http {
     void
     S_HttpClient_Connect::onResolve(boost::beast::error_code ec, boost::asio::ip::tcp::resolver::results_type results) {
         //#[ operation onResolve(beast::error_code,boost::asio::ip::tcp::resolver::results_type)
-        if (ec)
-            return fail(ec, "resolve");
+        if (ec) {
+            fail(ec, "resolve");
+            return;
+        }
 
         // Set a timeout on the operation
         _stream.expires_after(std::chrono::seconds(3));
@@ -104,9 +111,9 @@ namespace S_Http {
         // Make the connection on the IP address we get from a lookup
         _stream.async_connect(
                 results,
-                boost::beast::bind_front_handler(
+                _strand.wrap(std::bind(
                         &S_HttpClient_Connect::onConnect,
-                        std::dynamic_pointer_cast<S_HttpClient_Connect>(shared_from_this())));
+                        std::dynamic_pointer_cast<S_HttpClient_Connect>(shared_from_this()), std::placeholders::_1,std::placeholders::_2)));
         //#]
     }
 
@@ -114,14 +121,15 @@ namespace S_Http {
         //#[ operation onWrite(beast::error_code,std::size_t)
         boost::ignore_unused(bytesTransferred);
 
-        if (ec)
-            return fail(ec, "write");
-
+        if (ec) {
+             fail(ec, "write");
+            return;
+        }
         // Receive the HTTP response
         boost::beast::http::async_read(_stream, _buffer, _res,
-                                       boost::beast::bind_front_handler(
+                                       _strand.wrap(std::bind(
                                                &S_HttpClient_Connect::onRead,
-                                               std::dynamic_pointer_cast<S_HttpClient_Connect>(shared_from_this())));
+                                               std::dynamic_pointer_cast<S_HttpClient_Connect>(shared_from_this()), std::placeholders::_1,std::placeholders::_2)));
         //#]
     }
 
@@ -130,9 +138,9 @@ namespace S_Http {
         _resolver.async_resolve(
                 host,
                 port,
-                boost::beast::bind_front_handler(
+                _strand.wrap(std::bind(
                         &S_HttpClient_Connect::onResolve,
-                        std::dynamic_pointer_cast<S_HttpClient_Connect>(shared_from_this())));
+                        std::dynamic_pointer_cast<S_HttpClient_Connect>(shared_from_this()), std::placeholders::_1,std::placeholders::_2)));
         //#]
     }
 

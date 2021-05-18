@@ -15,8 +15,8 @@ namespace S_Http {
     void S_HttpClient_ConnectionManager::stop(connection_ptr connection) {
         //#[ operation stop(connection_ptr)
         std::lock_guard<std::recursive_mutex> lock(_mutex);
-        _connections.erase(connection);
         connection->close();
+        _connections.erase(connection);
         //#]
     }
 

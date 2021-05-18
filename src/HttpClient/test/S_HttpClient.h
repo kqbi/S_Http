@@ -21,7 +21,7 @@ class S_HttpClient {
 
 public :
 
-    S_HttpClient();
+    S_HttpClient(boost::asio::io_context &ioc);
 
     //## operation ~S_HttpClient_MainSession()
     ~S_HttpClient();

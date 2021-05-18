@@ -53,9 +53,9 @@ namespace S_Http {
                     boost::beast::http::async_write(
                             self->_stream,
                             *sp,
-                            [self, sp](boost::beast::error_code ec, std::size_t bytes) {
+                            self->_strand.wrap([self, sp](boost::beast::error_code ec, std::size_t bytes) {
                                 self->handleWrite(ec, bytes, sp->need_eof());
-                            });
+                            }));
             }
         };
 
@@ -63,7 +63,7 @@ namespace S_Http {
 
         //## operation S_HttpServer_Connection(std::string&,S_HttpServer_Service&,tcp::socket&&,S_HttpServer_ConnectionManager&,std::string&,unsigned short&)
         S_HttpServer_Connection(std::string &connectionId, S_HttpServer_Service &service,
-                                boost::asio::ip::tcp::socket &&socket,
+                                boost::asio::ip::tcp::socket &&socket, boost::asio::io_context &ioc,
                                 S_HttpServer_ConnectionManager &connectionManager, std::string &remoteIpAddress,
                                 unsigned short &port);
 
@@ -131,6 +131,8 @@ namespace S_Http {
         S_HttpServer_Service &_service;        //## attribute _service
 
         bool _keepAlive;        //## attribute _keepAlive
+
+        boost::asio::io_context::strand _strand;
     };
 }
 #endif

@@ -9,12 +9,11 @@
 *********************************************************************/
 
 #include "S_HttpClient.h"
-#include "OXFWorkPoller.h"
 //## package HttpClientTest
 
 //## class S_HttpClient_MainSession
-S_HttpClient::S_HttpClient() : _httpClient(0) {
-    _httpClient = S_HttpClient_Create(OXFWorkPollerPool::Instance()._ioc);
+S_HttpClient::S_HttpClient(boost::asio::io_context &ioc) : _httpClient(0) {
+    _httpClient = S_HttpClient_Create(ioc);
 }
 
 S_HttpClient::~S_HttpClient() {
