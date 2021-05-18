@@ -8,7 +8,6 @@
     File Path	: ../../src/MainDefaultComponent.cpp
 *********************************************************************/
 
-#include <oxf/oxf.h>
 #include <iostream>
 #include <signal.h>
 #include "S_HttpClient.h"

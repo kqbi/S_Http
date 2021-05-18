@@ -11,7 +11,6 @@
 #include "S_HttpClient_Connect.h"
 #include "S_HttpClient_Service.h"
 #include "S_HttpRes_Msg.h"
-#include "oxf/OXFWorkPoller.h"
 
 //## package HttpClient
 namespace S_Http {
