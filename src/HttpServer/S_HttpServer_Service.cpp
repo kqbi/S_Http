@@ -45,7 +45,7 @@ namespace S_Http {
 
             std::make_shared<S_HttpServer_Connection>(
                     connectId,
-                    *this,
+                    shared_from_this(),
                     std::move(socket),
                     _ioc,
                     _connectionManager,
@@ -107,7 +107,7 @@ namespace S_Http {
         _acceptor.async_accept(boost::asio::make_strand(_ioc),
                                boost::beast::bind_front_handler(
                                        &S_HttpServer_Service::handleAccept,
-                                       this));
+                                       shared_from_this()));
         //#]
     }
 

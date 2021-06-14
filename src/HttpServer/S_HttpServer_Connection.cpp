@@ -10,20 +10,21 @@
 
 #include "S_HttpServer_Connection.h"
 #include "S_HttpReq_Msg.h"
-#include "S_HttpServer_ConnectionManager.h"
 #include "S_HttpServer_Service.h"
 #include "Util.h"
 #include <iostream>
 //## package HttpServer
 namespace S_Http {
 //## class S_HttpServer_Connection
-    S_HttpServer_Connection::S_HttpServer_Connection(std::string &connectionId, S_HttpServer_Service &service,
-                                                     boost::asio::ip::tcp::socket &&socket,boost::asio::io_context &ioc,
+    S_HttpServer_Connection::S_HttpServer_Connection(std::string &connectionId,
+                                                     std::shared_ptr<S_HttpServer_Service> service,
+                                                     boost::asio::ip::tcp::socket &&socket,
+                                                     boost::asio::io_context &ioc,
                                                      S_HttpServer_ConnectionManager &connectionManager,
                                                      std::string &remoteIpAddress, unsigned short &port) :
             _stream(std::move(socket)), _connectManager(connectionManager),
             _connectionId(connectionId), _remoteIpAddress(remoteIpAddress),
-            _port(port), _service(service), _keepAlive(true), _strand(ioc){
+            _port(port), _service(service), _keepAlive(true), _strand(ioc.get_executor()) {
         //#[ operation S_HttpServer_Connection(std::string&,S_HttpServer_Service&,tcp::socket&&,S_HttpServer_ConnectionManager&,std::string&,unsigned short&)
         //#]
     }
@@ -46,11 +47,24 @@ namespace S_Http {
         //#[ operation doRead()
         _req = {};
         _stream.expires_after(std::chrono::seconds(120));
+        auto self = shared_from_this();
         boost::beast::http::async_read(_stream,
                                        _buffer,
                                        _req,
-                                       _strand.wrap(std::bind(&S_HttpServer_Connection::handleRead,
-                                                                        shared_from_this(),std::placeholders::_1,std::placeholders::_2)));
+                                       [this, self](boost::beast::error_code e, size_t bytesTransferred) {
+                                           if (!e) {
+                                               boost::asio::post(_service->_ioc, [this, self] {
+                                                   handleRequest("", std::move(_req), send_lambda(shared_from_this()));
+                                               });
+                                           } else if (e == boost::beast::http::error::end_of_stream) {
+                                               std::cout << _connectionId << " read:" << e.message() << ":" << e
+                                                         << std::endl;
+                                               _connectManager.stop(shared_from_this());
+                                           } else {
+                                               std::cout << _connectionId << " read:" << e.message() << ":" << e
+                                                         << std::endl;
+                                           }
+                                       });
         //#]
     }
 
@@ -132,10 +146,10 @@ namespace S_Http {
             std::string urlString = urldecode(url);
             boost::beast::error_code ec;
             boost::beast::http::file_body::value_type body;
-            if (_service._filePaths.empty())
+            if (_service->_filePaths.empty())
                 return send(not_found(req.target()));
 
-            for (auto it : _service._filePaths) {
+            for (auto it : _service->_filePaths) {
                 body.open((it + urlString).c_str(), boost::beast::file_mode::scan, ec);
                 if (!ec)
                     break;
@@ -238,7 +252,7 @@ namespace S_Http {
             msg->_remotePort = _port;
             _keepAlive = req.keep_alive();
             msg->_req = req;
-            if (!_service.handleHttp(msg)) {
+            if (!_service->handleHttp(msg)) {
                 send(not_found(req.target()));
             }
             //req.
@@ -389,38 +403,6 @@ namespace S_Http {
         //#[ operation stop()
         boost::beast::error_code ec;
         _stream.socket().shutdown(boost::asio::ip::tcp::socket::shutdown_both, ec);
-        //#]
-    }
-
-    void S_HttpServer_Connection::handleRead(boost::beast::error_code e, size_t bytesTransferred) {
-        //#[ operation handleRead(beast::error_code,size_t)
-        if (!e) {
-            //handleRequest("", std::move(_req), send_lambda(*this));
-            boost::asio::post(_service._ioc, [&] {
-                handleRequest("", std::move(_req), send_lambda(shared_from_this()));
-            });
-        } else if (e == boost::beast::http::error::end_of_stream) {
-            std::cout << _connectionId << " read:" << e.message() << ":" << e << std::endl;
-            _connectManager.stop(shared_from_this());
-        } else {
-            std::cout << _connectionId << " read:" << e.message() << ":" << e << std::endl;
-        }
-        //#]
-    }
-
-    void S_HttpServer_Connection::handleWrite(boost::beast::error_code e, std::size_t bytes_transferred, bool close) {
-        //#[ operation handleWrite(beast::error_code,std::size_t,bool)
-        if (e)
-            return stop();
-
-        if (close) {
-            // This means we should close the connection, usually because
-            // the response indicated the "Connection: close" semantic.
-            return _connectManager.stop(shared_from_this());
-        }
-
-        // Read another request
-        doRead();
         //#]
     }
 }

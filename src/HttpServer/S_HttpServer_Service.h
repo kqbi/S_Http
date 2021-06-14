@@ -23,12 +23,14 @@ namespace S_Http {
 //## package HttpServer
 
 //## class S_HttpServer_Service
-    class S_HttpServer_Service {
+class S_HttpServer_Service:public std::enable_shared_from_this<S_HttpServer_Service> {
     public :
 
         typedef std::shared_ptr<S_HttpServer_Connection> connection_ptr;
 
         using ReqHandler = std::function<void(S_HttpReq_Msg *msg)>;
+
+        typedef std::shared_ptr<S_HttpServer_Service> Ptr;
 
     public :
 

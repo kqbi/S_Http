@@ -11,9 +11,11 @@
 #ifndef HttpServer_S_HttpServer_Connection_H
 #define HttpServer_S_HttpServer_Connection_H
 
-#include "boost/asio.hpp"
-#include "boost/beast.hpp"
-#include "boost/noncopyable.hpp"
+#include <boost/asio.hpp>
+#include <boost/beast.hpp>
+#include <boost/noncopyable.hpp>
+#include <boost/asio/spawn.hpp>
+#include "S_HttpServer_ConnectionManager.h"
 
 namespace S_Http {
     class S_HttpReq_Msg;
@@ -49,20 +51,38 @@ namespace S_Http {
                         boost::beast::http::message<isRequest, Body, Fields>>(std::move(msg));
 
                 auto self = _self.lock();
-                if (self && self->_stream.socket().is_open())
-                    boost::beast::http::async_write(
-                            self->_stream,
-                            *sp,
-                            self->_strand.wrap([self, sp](boost::beast::error_code ec, std::size_t bytes) {
-                                self->handleWrite(ec, bytes, sp->need_eof());
-                            }));
+                if (self)
+                    boost::asio::post(self->_strand, [this, sp, self]() {
+                        boost::asio::spawn(self->_strand,
+                                           [this, sp, self](boost::asio::yield_context yield) {
+                                               if (self->_stream.socket().is_open()) {
+                                                   boost::system::error_code err;
+                                                   boost::beast::http::async_write(
+                                                           self->_stream,
+                                                           *sp,
+                                                           yield[err]);
+
+                                                   if (err)
+                                                       return self->stop();
+
+                                                   if (sp->need_eof()) {
+                                                       // This means we should close the connection, usually because
+                                                       // the response indicated the "Connection: close" semantic.
+                                                       return self->_connectManager.stop(self);
+                                                   }
+
+                                                   // Read another request
+                                                   self->doRead();
+                                               }
+                                           });
+                    });
             }
         };
 
         ////    Constructors and destructors    ////
 
         //## operation S_HttpServer_Connection(std::string&,S_HttpServer_Service&,tcp::socket&&,S_HttpServer_ConnectionManager&,std::string&,unsigned short&)
-        S_HttpServer_Connection(std::string &connectionId, S_HttpServer_Service &service,
+        S_HttpServer_Connection(std::string &connectionId, std::shared_ptr<S_HttpServer_Service> service,
                                 boost::asio::ip::tcp::socket &&socket, boost::asio::io_context &ioc,
                                 S_HttpServer_ConnectionManager &connectionManager, std::string &remoteIpAddress,
                                 unsigned short &port);
@@ -104,12 +124,6 @@ namespace S_Http {
 
     private :
 
-        //## operation handleRead(beast::error_code,size_t)
-        void handleRead(boost::beast::error_code e, size_t bytesTransferred);
-
-        //## operation handleWrite(beast::error_code,std::size_t,bool)
-        void handleWrite(boost::beast::error_code e, std::size_t bytes_transferred, bool close);
-
         ////    Attributes    ////
 
     public :
@@ -128,11 +142,11 @@ namespace S_Http {
 
         boost::beast::http::request<boost::beast::http::string_body> _req;        //## attribute _req
 
-        S_HttpServer_Service &_service;        //## attribute _service
+        std::shared_ptr<S_HttpServer_Service> _service;        //## attribute _service
 
         bool _keepAlive;        //## attribute _keepAlive
 
-        boost::asio::io_context::strand _strand;
+        boost::asio::strand<boost::asio::io_context::executor_type> _strand;
     };
 }
 #endif
